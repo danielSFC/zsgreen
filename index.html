@@ -221,6 +221,10 @@ const $ = (s, r = document) => r.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const norm = (s) => String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
 const fmtOdd = (n) => Number(n).toFixed(2);
+// Limites do bilhete (o servidor aplica os mesmos valores)
+const MAX_JOGOS = 10, ODD_MAX = 100, FICHAS_PADRAO = 100;
+const fmtFichas = (n) => Math.round(Number(n) * 100) / 100 === Math.round(Number(n)) ? String(Math.round(Number(n))) : Number(n).toFixed(2).replace('.', ',');
+const retornoDe = (b, odd) => Number(b.valor_simulado || FICHAS_PADRAO) * Number(odd);
 const fmtHora = (iso) => new Date(iso).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
 const fmtDataCurta = (iso) => new Date(iso).toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" });
 const fmtDataHora = (iso) => `${fmtDataCurta(iso)} ${fmtHora(iso)}`;
@@ -260,6 +264,7 @@ const jogador = (b) => (b.apostador && b.apostador.apelido) || b.apelido_informa
 function textoCupom(b) {
   return [`🟢 *ZSGREEN* — Bilhete *${b.codigo}*`, `Jogador: ${jogador(b)}`,
     `${b.itens.length} ${b.itens.length === 1 ? "jogo" : "jogos"} · Cotação total: ${fmtOdd(b.odd_total)}`,
+    `Valor simulado: ${fmtFichas(b.valor_simulado || FICHAS_PADRAO)} fichas · Retorno simulado: ${fmtFichas(retornoDe(b, b.odd_total))} fichas`,
     `Status: ${SIT[situacaoBilhete(b)]}`, "", `Acompanhe aqui: ${linkCupom(b.codigo)}`].join("\n");
 }
 function rotuloMercado(i) {
@@ -292,12 +297,14 @@ function textoBilhete(b) {
     l.push(`${emoji(i.esporte_nome)} ${i.casa} x ${i.fora} — ${fmtDataHora(i.inicio)}`);
     l.push(`   ➜ ${rotuloMercado(i)} @ ${fmtOdd(i.odd)}`);
   }
-  l.push("", `Odd total: *${fmtOdd(b.odd_total)}*`, "", `Para validar: ${baseUrl()}?v=${b.codigo}`);
+  l.push("", `Odd total: *${fmtOdd(b.odd_total)}*`, `Valor simulado: ${fmtFichas(b.valor_simulado || FICHAS_PADRAO)} fichas → retorno simulado ${fmtFichas(retornoDe(b, b.odd_total))} fichas`, "", `Para validar: ${baseUrl()}?v=${b.codigo}`);
   return l.join("\n");
 }
 const ERROS = {
   BILHETE_VAZIO: "Escolha ao menos um jogo.",
-  MUITOS_JOGOS: "O bilhete aceita no máximo 15 jogos.",
+  MUITOS_JOGOS: "O bilhete aceita no máximo 10 jogos.",
+  ODD_MAXIMA: "A odd total passou do limite de 100. Tire algum jogo.",
+  VALOR_INVALIDO: "O valor simulado deve ficar entre 1 e 10.000 fichas.",
   MUITOS_BILHETES: "Muitos bilhetes gerados agora. Tente de novo em alguns minutos.",
   EVENTO_INEXISTENTE: "Um dos jogos não está mais disponível. Atualize a lista.",
   EVENTO_JA_COMECOU: "Um dos jogos já começou (ou começa em menos de 5 min). Remova-o do bilhete.",
@@ -398,7 +405,7 @@ function demoBackend() {
     const sp = a ? db.perfis.find((x) => x.id === a.supervisor_id) : null;
     const vp = db.perfis.find((x) => x.id === b.validado_por);
     return {
-      id: b.id, codigo: b.codigo, status: b.status, odd_total: b.odd_total, criado_em: b.criado_em,
+      id: b.id, codigo: b.codigo, status: b.status, odd_total: b.odd_total, valor_simulado: b.valor_simulado || 100, criado_em: b.criado_em,
       validado_em: b.validado_em || null, validado_por_nome: vp ? vp.nome : null, apelido_informado: b.apelido_informado || null,
       apostador: a ? { nome: a.nome, apelido: a.apelido } : null, supervisor_nome: sp ? sp.nome : null,
       itens: b.itens.map((i) => { const pl = db.placares[i.evento_id]; return { ...i, resultado: i.resultado || "pendente", placar: pl ? { casa: pl.casa, fora: pl.fora, anulado: !!pl.anulado } : null }; })
@@ -438,10 +445,12 @@ function demoBackend() {
     nome: "demo",
     async eventos() { const db = load(); save(db); return delay(db.eventos.filter((e) => new Date(e.inicio) > new Date()).sort((a, b) => new Date(a.inicio) - new Date(b.inicio))); },
     async banners() { const db = load(), p = perfilLogado(db); return delay(db.banners.filter((b) => b.ativo || (p && p.role === "admin"))); },
-    async criarBilhete(itens, apelido) {
+    async criarBilhete(itens, apelido, valor) {
       const db = load();
+      valor = Math.round(Number(valor ?? 100));
+      if (!(valor >= 1 && valor <= 10000)) throw new Error("VALOR_INVALIDO");
       if (!Array.isArray(itens) || !itens.length) throw new Error("BILHETE_VAZIO");
-      if (itens.length > 15) throw new Error("MUITOS_JOGOS");
+      if (itens.length > 10) throw new Error("MUITOS_JOGOS");
       const vistos = new Set(); let total = 1; const linhas = [];
       for (const it of itens) {
         const ev = db.eventos.find((e) => e.id === it.evento_id);
@@ -461,9 +470,10 @@ function demoBackend() {
         linhas.push({ evento_id: ev.id, esporte_nome: ev.esporte_nome, liga: ev.liga, casa: ev.casa, fora: ev.fora, inicio: ev.inicio, mercado: m, selecao: it.selecao, linha, odd });
         total *= odd;
       }
+      if (Math.round(total * 100) / 100 > 100) throw new Error("ODD_MAXIMA");
       const AL = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; let codigo;
       do { codigo = "ZS-" + Array.from({ length: 6 }, () => AL[Math.floor(Math.random() * 32)]).join(""); } while (achaBilhete(db, codigo));
-      const b = { id: uid(), codigo, apostador_id: null, apelido_informado: String(apelido || "").trim().slice(0, 30) || null, status: "pendente", odd_total: Math.round(total * 100) / 100, criado_em: new Date().toISOString(), itens: linhas };
+      const b = { id: uid(), codigo, apostador_id: null, apelido_informado: String(apelido || "").trim().slice(0, 30) || null, status: "pendente", odd_total: Math.round(total * 100) / 100, valor_simulado: valor, criado_em: new Date().toISOString(), itens: linhas };
       db.bilhetes.push(b); save(db);
       return delay({ codigo, odd_total: b.odd_total });
     },
@@ -585,7 +595,7 @@ async function supabaseBackend() {
     nome: "supabase",
     eventos: () => tab(sb.from("eventos").select("*").gt("inicio", new Date().toISOString()).order("inicio").limit(800)),
     banners: () => tab(sb.from("banners").select("*").order("criado_em", { ascending: false })),
-    criarBilhete: (itens, apelido) => rpc("criar_bilhete", { p_itens: itens, p_apelido: apelido }),
+    criarBilhete: (itens, apelido, valor) => rpc("criar_bilhete", { p_itens: itens, p_apelido: apelido, p_valor: valor }),
     bilhetesPorCodigos: (codigos) => rpc("bilhetes_por_codigos", { p_codigos: codigos }),
     async login(email, senha) {
       const { error } = await sb.auth.signInWithPassword({ email: String(email).trim(), password: senha });
@@ -645,7 +655,7 @@ const S = {
 const app = $("#app");
 const LOGO = `<svg viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#2BC866"/><path d="M9 16.5l4.5 4.5L23 11" stroke="#04281A" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const logoHtml = `<span class="logo">${LOGO}ZS<b>GREEN</b></span>`;
-const RODAPE = `<div class="rodape">ZSGREEN é um gerador de bilhetes entre amigos. Não processa pagamentos e não paga prêmios.<br>Proibido para menores de 18 anos. Jogue com responsabilidade.<br><b>ZSGREEN v3</b> · cupom e resultados</div>`;
+const RODAPE = `<div class="rodape">ZSGREEN é um gerador de bilhetes entre amigos. Não processa pagamentos e não paga prêmios.<br>Proibido para menores de 18 anos. Jogue com responsabilidade.<br><b>ZSGREEN v3.1</b> · cupom e resultados</div>`;
 const demoBanner = () => (MODO_DEMO ? `<div class="demo">MODO DEMONSTRAÇÃO — dados fictícios, salvos só neste navegador</div>` : "");
 const pageHtml = (inner) => `<div class="wrap">${demoBanner()}${inner}${RODAPE}</div>`;
 const temaBtn = () => `<button class="iconbtn" data-act="tema" title="Trocar tema claro/escuro">${document.documentElement.dataset.tema === "escuro" ? "☀️" : "🌙"}</button>`;
@@ -668,6 +678,7 @@ async function boot() {
   const qs = new URLSearchParams(location.search);
   S.codigoPendente = qs.get("v"); S.cupomCodigo = qs.get("b");
   S.apelido = localStorage.getItem("zs_apelido") || "";
+  try { S.valor = Math.max(1, Math.min(10000, Math.round(Number(localStorage.getItem("zs_valor"))) || FICHAS_PADRAO)); } catch (e) { S.valor = FICHAS_PADRAO; }
   try { S.codigos = JSON.parse(localStorage.getItem("zs_codigos")) || []; } catch (e) { S.codigos = []; }
   if (localStorage.getItem("zs_18") !== "1") { S.view = "gate"; return render(); }
   await iniciar();
@@ -822,7 +833,7 @@ function drawBarra() {
   const el = $("#barra"); if (!el) return;
   const n = Object.keys(S.picks).length;
   if (!n || S.aba !== "jogos") { el.innerHTML = ""; return; }
-  el.innerHTML = `<div class="barra"><div class="in" data-act="abrir-sheet"><div><span>${n} ${n === 1 ? "jogo" : "jogos"} no bilhete</span>Ver bilhete</div><b>${fmtOdd(oddTotalPicks())}</b></div></div>`;
+  el.innerHTML = `<div class="barra"><div class="in" data-act="abrir-sheet"><div><span>${n} / ${MAX_JOGOS} ${n === 1 ? "jogo" : "jogos"} no bilhete</span>Ver bilhete</div><b>${fmtOdd(oddTotalPicks())}</b></div></div>`;
 }
 function drawSheet() {
   const el = $("#sheet"); if (!el) return;
@@ -835,6 +846,11 @@ function drawSheet() {
       <div class="sm" style="color:var(--gt);font-weight:700">➜ ${esc(rotuloPick(e, p))}</div></div>
       <div class="o">${fmtOdd(oddDe(e, p))}</div><button class="x" data-act="rm-pick" data-ev="${esc(e.id)}">✕</button></div>`).join("")}
     <div class="tot"><span class="mut">Odd total</span><b>${fmtOdd(oddTotalPicks())}</b></div>
+    ${oddTotalPicks() > ODD_MAX ? `<div class="aviso" style="border-color:var(--red,#e5484d)">⚠ A odd total passou do limite de ${ODD_MAX}. Tire algum jogo para gerar o bilhete.</div>` : ""}
+    <label for="vl-inf">Valor simulado (fichas)</label>
+    <input id="vl-inf" type="number" inputmode="numeric" min="1" max="10000" step="1" value="${S.valor}" autocomplete="off">
+    <div class="tot" style="margin:8px 0 4px"><span class="mut">Retorno simulado</span><b id="ret-sim" style="font-size:20px">${fmtFichas(S.valor * oddTotalPicks())} fichas</b></div>
+    <div class="sm mut" style="margin-bottom:8px">Fichas são um valor de brincadeira: não é dinheiro e não paga nada. Limites: até ${MAX_JOGOS} jogos e odd total até ${ODD_MAX}.</div>
     <label for="ap-inf">Seu apelido</label>
     <input id="ap-inf" type="text" maxlength="30" value="${esc(S.apelido)}" placeholder="Como o supervisor te conhece" autocomplete="off">
     <div class="aviso">O bilhete só vale depois que um supervisor validar, antes do primeiro jogo começar.</div>
@@ -854,7 +870,8 @@ function htmlBilhete(b, { staff = false, acoes = "", extra = "" } = {}) {
   return `<div class="tk"><div class="tk-h"><div class="code">${esc(b.codigo)}</div><span class="badge st-${sit}">${SIT[sit]}</span></div>${meta}
     <div class="tk-b">${b.itens.map((i) => `<div class="it"><div class="lg">${emoji(i.esporte_nome)} ${esc(i.liga || "")} · ${fmtDataHora(i.inicio)}</div>
       <div class="jg">${esc(i.casa)} x ${esc(i.fora)}</div><div class="pl"><span>➜ ${esc(rotuloMercado(i))}${i.resultado && i.resultado !== "pendente" ? ` <span class="badge st-${RES[i.resultado][1]}" style="margin-left:6px">${RES[i.resultado][0]}</span>` : ""}</span><span>${fmtOdd(i.odd)}</span></div></div>`).join("")}</div>
-    ${val}<div class="tk-f"><span class="mut">Odd total</span><b>${fmtOdd(b.odd_total)}</b></div>${extra}${acoes ? `<div style="padding:12px 15px" class="btns">${acoes}</div>` : ""}</div>`;
+    ${val}<div class="tk-f"><span class="mut">Odd total</span><b>${fmtOdd(b.odd_total)}</b></div>
+    <div class="tk-m" style="display:flex;justify-content:space-between"><span>Valor simulado: <strong>${fmtFichas(b.valor_simulado || FICHAS_PADRAO)} fichas</strong></span><span>Retorno simulado: <strong>${fmtFichas(retornoDe(b, b.odd_total))} fichas</strong></span></div>${extra}${acoes ? `<div style="padding:12px 15px" class="btns">${acoes}</div>` : ""}</div>`;
 }
 function htmlCupom(b, { acoes = "" } = {}) {
   const sit = situacaoBilhete(b);
@@ -879,9 +896,12 @@ function htmlCupom(b, { acoes = "" } = {}) {
     <div class="cp-row"><span class="cp-k">Quantidade de jogos</span><span>${b.itens.length}</span></div>
     <div class="cp-row"><span class="cp-k">Cotação total</span><span class="cp-b">${fmtOdd(b.odd_total)}</span></div>
     ${ajustada ? `<div class="cp-row"><span class="cp-k">Cotação ajustada (jogos anulados)</span><span class="cp-b">${fmtOdd(ajustada)}</span></div>` : ""}
+    <hr class="cp-sep">
+    <div class="cp-row"><span class="cp-k">Total apostado (simulado)</span><span class="cp-b">${fmtFichas(b.valor_simulado || FICHAS_PADRAO)} fichas</span></div>
+    <div class="cp-row"><span class="cp-k">Possível retorno (simulado)</span><span class="cp-b">${fmtFichas(retornoDe(b, ajustada || b.odd_total))} fichas</span></div>
     <hr class="cp-sep"><div class="cp-cap">BILHETE</div><div class="cp-code">${esc(b.codigo)}</div>
     <div class="cp-stamp st-${sit}">${SIT[sit]}</div>
-    <div class="cp-foot">ZSGREEN é um gerador de bilhetes entre amigos. Não processa pagamentos nem paga prêmios. Proibido para menores de 18 anos.</div>
+    <div class="cp-foot">ZSGREEN é um gerador de bilhetes entre amigos. Fichas são valores simulados, sem valor em dinheiro. Não processa pagamentos nem paga prêmios. Proibido para menores de 18 anos.</div>
     ${acoes ? `<div class="btns" style="margin-top:12px">${acoes}</div>` : ""}</div>`;
 }
 const acoesCupom = (b) => b.status === "pendente"
@@ -1080,7 +1100,7 @@ async function acao(btn) {
         const p = { mercado: d.m, selecao: d.sel, linha: d.l !== undefined ? Number(d.l) : null };
         const cur = S.picks[d.ev];
         if (cur && pickIgual(cur, p)) delete S.picks[d.ev];
-        else { if (!cur && Object.keys(S.picks).length >= 15) return toast("Máximo de 15 jogos por bilhete", "erro"); S.picks[d.ev] = p; }
+        else { if (!cur && Object.keys(S.picks).length >= MAX_JOGOS) return toast(`Máximo de ${MAX_JOGOS} jogos por bilhete`, "erro"); S.picks[d.ev] = p; }
         salvarPicks(); drawLista(); return drawBarra();
       }
       case "abrir-sheet": S.sheet = true; return drawSheet();
@@ -1091,10 +1111,15 @@ async function acao(btn) {
         const ap = ($("#ap-inf").value || "").trim();
         if (ap.length < 2) return toast("Informe seu apelido (mínimo 2 letras)", "erro");
         S.apelido = ap; localStorage.setItem("zs_apelido", ap);
+        const vl = Math.round(Number(($("#vl-inf").value || "").replace(",", ".")));
+        if (!(vl >= 1 && vl <= 10000)) return toast(msgErro(new Error("VALOR_INVALIDO")), "erro");
+        if (Object.keys(S.picks).length > MAX_JOGOS) return toast(msgErro(new Error("MUITOS_JOGOS")), "erro");
+        if (oddTotalPicks() > ODD_MAX) return toast(msgErro(new Error("ODD_MAXIMA")), "erro");
+        S.valor = vl; try { localStorage.setItem("zs_valor", String(vl)); } catch (e) {}
         btn.disabled = true;
         const itens = Object.entries(S.picks).map(([evento_id, p]) => ({ evento_id, mercado: p.mercado, selecao: p.selecao, linha: p.linha }));
         try {
-          const r = await S.be.criarBilhete(itens, ap);
+          const r = await S.be.criarBilhete(itens, ap, vl);
           S.codigos = [r.codigo, ...S.codigos.filter((c) => c !== r.codigo)].slice(0, 30);
           localStorage.setItem("zs_codigos", JSON.stringify(S.codigos));
           S.ultimo = (await S.be.bilhetesPorCodigos([r.codigo]))[0];
@@ -1189,7 +1214,10 @@ document.addEventListener("click", (ev) => {
   if (el && el.dataset.act !== "fechar-sheet-bg") acao(el);
 });
 document.addEventListener("submit", (ev) => { const f = ev.target.closest("form[data-form]"); if (f) { ev.preventDefault(); enviar(f); } });
-document.addEventListener("input", (ev) => { if (ev.target.id === "busca") { S.busca = ev.target.value; drawLista(); } });
+document.addEventListener("input", (ev) => {
+  if (ev.target.id === "busca") { S.busca = ev.target.value; drawLista(); }
+  if (ev.target.id === "vl-inf") { const v = Math.round(Number(String(ev.target.value).replace(",", "."))) || 0; S.valor = v; const r = $("#ret-sim"); if (r) r.textContent = fmtFichas(v * oddTotalPicks()) + " fichas"; }
+});
 document.addEventListener("change", (ev) => {
   if (ev.target.id === "sel-ap") { S.selAp = ev.target.value; const n = $("#novo-ap"); if (n) n.style.display = ev.target.value === "__novo__" ? "block" : "none"; }
 });
