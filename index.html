@@ -402,7 +402,7 @@ function demoBackend() {
       const db = load(); exigeAdmin(db);
       return delay([...db.bilhetes].sort((x, y) => new Date(y.criado_em) - new Date(x.criado_em)).slice(0, 300).map((b) => bilheteJson(db, b)));
     },
-    async sincronizarJogos() { const db = load(); exigeAdmin(db); db.eventos = gerarEventos(); db.eventosEm = Date.now(); save(db); return delay({ mensagem: "Demonstração: jogos fictícios regenerados." }); },
+    async sincronizarJogos() { const db = load(); exigeAdmin(db); db.eventos = gerarEventos(); db.eventosEm = Date.now(); save(db); return delay({ mensagem: "Demonstração: jogos fictícios regenerados.", detalhe: [] }); },
     resetar() { localStorage.removeItem(KEY); localStorage.removeItem(SKEY); },
   };
   function processa(codigo, novo) {
@@ -438,7 +438,7 @@ async function supabaseBackend() {
     const { data, error } = await sb.functions.invoke(nome, { body: corpo });
     if (error) {
       let detalhe = error.message;
-      try { const j = await error.context.json(); if (j && j.erro) detalhe = j.erro; } catch (e) {}
+      try { const j = await error.context.json(); if (j && (j.erro || j.message)) detalhe = j.erro || j.message; } catch (e) {}
       throw new Error(detalhe);
     }
     return data;
@@ -474,8 +474,11 @@ async function supabaseBackend() {
     adminListarBilhetes: () => rpc("admin_listar_bilhetes"),
     async sincronizarJogos() {
       const r = await chamaFuncao("sync-odds", { force: true });
-      const ok = (r.resultado || []).filter((x) => x.eventos !== undefined).length;
-      return { mensagem: `Atualizado: ${ok} competição(ões). Créditos restantes da API: ${r.creditos_restantes ?? "?"}.` };
+      const lista = r.resultado || [];
+      const ok = lista.filter((x) => x.eventos !== undefined).length;
+      const detalhe = lista.map((x) => (x.eventos !== undefined ? `${x.esporte}: ${x.eventos} jogos` : x.erro ? `${x.esporte}: erro ${x.erro} da API` : `${x.esporte}: pulado (${x.pulado})`));
+      if (!lista.length) detalhe.push("Nenhuma competição da lista está ativa na The Odds API agora.");
+      return { mensagem: `Atualizado: ${ok} competição(ões). Créditos restantes da API: ${r.creditos_restantes ?? "?"}.`, detalhe };
     },
   };
 }
@@ -489,7 +492,7 @@ const S = {
   bilhetesAmigo: [], ultimo: null, sheet: false,
   abaStaff: "validar", codigoBusca: "", bilheteAberto: null, buscou: false,
   apostadores: [], bilhetesStaff: [], filtroBil: "pendente", supervisores: [], bilhetesAdmin: [],
-  codigoPendente: null, ultimaSync: "", chave: "",
+  codigoPendente: null, ultimaSync: "", chave: "", syncInfo: null,
 };
 const app = $("#app");
 const LOGO = `<svg viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#27E36F"/><path d="M9 16.5l4.5 4.5L23 11" stroke="#06100A" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -753,7 +756,9 @@ function stSupervisores() {
 }
 function stTodos() { return `<p class="mut sm">Todos os bilhetes, com o login de quem validou.</p>${S.bilhetesAdmin.map((b) => resumoBilhete(b)).join("") || `<div class="vazio">Nenhum bilhete ainda.</div>`}`; }
 function stJogos() {
-  return `<div class="card"><h3>Jogos e odds</h3><p class="mut" style="margin:0 0 12px">${S.eventos.length} jogos futuros na base.${S.ultimaSync ? `<br>Última atualização: ${esc(S.ultimaSync)}` : ""}</p>
+  const si = S.syncInfo;
+  const bloco = si ? `<div class="${si.erro ? "aviso" : "ok"}">${esc(si.erro || si.mensagem)}${(si.detalhe || []).length ? `<br><span class="sm">${si.detalhe.map(esc).join("<br>")}</span>` : ""}</div>` : "";
+  return `<div class="card"><h3>Jogos e odds</h3>${bloco}<p class="mut" style="margin:0 0 12px">${S.eventos.length} jogos futuros na base.${S.ultimaSync ? `<br>Última atualização: ${esc(S.ultimaSync)}` : ""}</p>
     <button class="btn p" data-act="sync-jogos">Atualizar jogos agora</button>
     <p class="mut sm" style="margin:12px 0 0">${MODO_DEMO ? "No modo demonstração os jogos são fictícios." : "Cada atualização gasta créditos da API de odds (plano grátis: 500 por mês). Há também uma atualização automática a cada 6 horas."}</p></div>`;
 }
@@ -844,7 +849,9 @@ async function acao(btn) {
       case "toggle-supervisor": await S.be.setSupervisorAtivo(d.id, d.ativo !== "1"); await carregaAba(); return render();
       case "sync-jogos": {
         btn.disabled = true; btn.textContent = "Atualizando…";
-        const r = await S.be.sincronizarJogos(); toast(r.mensagem, "ok"); await carregaAba(); return render();
+        try { const r = await S.be.sincronizarJogos(); S.syncInfo = r; toast(r.mensagem, "ok"); }
+        catch (e) { S.syncInfo = { erro: msgErro(e) }; }
+        await carregaAba(); return render();
       }
     }
   } catch (e) { toast(msgErro(e), "erro"); render(); }
