@@ -645,7 +645,7 @@ const S = {
 const app = $("#app");
 const LOGO = `<svg viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#2BC866"/><path d="M9 16.5l4.5 4.5L23 11" stroke="#04281A" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const logoHtml = `<span class="logo">${LOGO}ZS<b>GREEN</b></span>`;
-const RODAPE = `<div class="rodape">ZSGREEN é um gerador de bilhetes entre amigos. Não processa pagamentos e não paga prêmios.<br>Proibido para menores de 18 anos. Jogue com responsabilidade.</div>`;
+const RODAPE = `<div class="rodape">ZSGREEN é um gerador de bilhetes entre amigos. Não processa pagamentos e não paga prêmios.<br>Proibido para menores de 18 anos. Jogue com responsabilidade.<br><b>ZSGREEN v3</b> · cupom e resultados</div>`;
 const demoBanner = () => (MODO_DEMO ? `<div class="demo">MODO DEMONSTRAÇÃO — dados fictícios, salvos só neste navegador</div>` : "");
 const pageHtml = (inner) => `<div class="wrap">${demoBanner()}${inner}${RODAPE}</div>`;
 const temaBtn = () => `<button class="iconbtn" data-act="tema" title="Trocar tema claro/escuro">${document.documentElement.dataset.tema === "escuro" ? "☀️" : "🌙"}</button>`;
