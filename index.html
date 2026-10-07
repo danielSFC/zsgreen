@@ -3,44 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#06100A">
+<meta name="theme-color" content="#2BC866">
 <title>ZSGREEN</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2327E36F'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11' stroke='%2306100A' stroke-width='3.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<script>document.documentElement.dataset.tema = localStorage.getItem("zs_tema") || "claro";</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232BC866'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11' stroke='%2304281A' stroke-width='3.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#06100A; --bg2:#0A1710; --card:#0F2016; --card2:#15291D; --line:#1F3B2B;
-  --txt:#EAF7EF; --mut:#8CAA97; --g:#27E36F; --g2:#14B655; --red:#FF6161; --amb:#FFC247;
-  --r:16px;
+  --bg:#EEF5F0; --bg2:#E3EEE6; --card:#FFFFFF; --card2:#F1F7F3; --line:#D6E5DA;
+  --txt:#12281B; --mut:#587264; --g:#2BC866; --gt:#0C7F3A; --gink:#04281A;
+  --red:#D93636; --amb:#935F00; --ambbg:rgba(245,166,35,.16);
+  --glow:rgba(43,200,102,.30); --shadow:0 1px 8px rgba(18,40,27,.07); --heroglow:rgba(43,200,102,.20);
+  --r:14px; --paper:#FFFDF3; --blue:#1D4ED8;
+}
+html[data-tema="escuro"]{
+  --bg:#0E2219; --bg2:#12291E; --card:#173026; --card2:#1D3A2D; --line:#2A5440;
+  --txt:#EAF7EF; --mut:#9DBBA8; --g:#34D87A; --gt:#4BE88C; --gink:#04210F;
+  --red:#FF7A7A; --amb:#FFC247; --ambbg:rgba(255,194,71,.13);
+  --glow:rgba(52,216,122,.30); --shadow:0 2px 12px rgba(0,0,0,.25); --heroglow:rgba(52,216,122,.14);
+  --paper:#1A3328; --blue:#8DB9FF;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;min-height:100%}
 body{
-  background:
-    radial-gradient(900px 420px at 50% -120px, rgba(39,227,111,.16), transparent 70%),
-    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px) 0 0/100% 44px,
-    var(--bg);
-  color:var(--txt); font-family:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,sans-serif;
-  padding-bottom:env(safe-area-inset-bottom,0px); line-height:1.4;
+  background:radial-gradient(800px 360px at 50% -130px,var(--heroglow),transparent 70%),var(--bg);
+  color:var(--txt);font-family:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,sans-serif;
+  padding-bottom:env(safe-area-inset-bottom,0px);line-height:1.4;
 }
-button,input{font-family:inherit}
-.wrap{max-width:520px;margin:0 auto;padding:0 16px 120px}
-.top{display:flex;align-items:center;justify-content:space-between;padding:calc(14px + env(safe-area-inset-top,0px)) 0 10px}
-.logo{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:19px;letter-spacing:.2px}
-.logo b{color:var(--g)}
-.logo svg{width:26px;height:26px}
-.hello{font-size:12.5px;color:var(--mut);text-align:right;line-height:1.3}
-.hello strong{color:var(--txt);font-size:14px;display:block}
-.demo{margin:0 -16px 6px;padding:7px 16px;background:rgba(255,194,71,.12);color:var(--amb);font-size:12px;font-weight:600;text-align:center}
+button,input,select{font-family:inherit}
+.wrap{max-width:520px;margin:0 auto;padding:0 14px 120px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:calc(12px + env(safe-area-inset-top,0px)) 0 8px}
+.logo{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:18px;letter-spacing:.2px}
+.logo b{color:var(--gt)}
+.logo svg{width:25px;height:25px}
+.hello{font-size:12px;color:var(--mut);text-align:right;line-height:1.25}
+.hello strong{color:var(--txt);font-size:13.5px;display:block}
+.iconbtn{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer;font-size:15px;line-height:1;flex:none}
+.demo{margin:0 -14px 4px;padding:6px 14px;background:var(--ambbg);color:var(--amb);font-size:11.5px;font-weight:700;text-align:center}
 
-.tabs{display:flex;gap:6px;overflow-x:auto;padding:4px 0 12px;scrollbar-width:none}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:2px 0 10px;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
-.tab{flex:none;border:1px solid var(--line);background:var(--card);color:var(--mut);border-radius:999px;padding:9px 16px;font-weight:700;font-size:13.5px;cursor:pointer}
-.tab.on{background:var(--g);color:#04210F;border-color:var(--g)}
+.tab{flex:none;border:1px solid var(--line);background:var(--card);color:var(--mut);border-radius:999px;padding:8px 15px;font-weight:700;font-size:13px;cursor:pointer}
+.tab.on{background:var(--g);color:var(--gink);border-color:var(--g)}
 
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:15px;margin-bottom:11px;box-shadow:var(--shadow)}
 .card h2,.card h3{margin:0 0 10px;font-size:16px}
 .mut{color:var(--mut);font-size:13px}
 .sm{font-size:12px}
@@ -48,108 +56,149 @@ button,input{font-family:inherit}
 .row.sp{justify-content:space-between}
 .grow{flex:1;min-width:0}
 
-.btn{border:0;border-radius:12px;padding:13px 16px;font-weight:800;font-size:15px;cursor:pointer;width:100%;transition:transform .08s,filter .15s}
+.btn{border:0;border-radius:12px;padding:12px 16px;font-weight:800;font-size:14.5px;cursor:pointer;width:100%;transition:transform .08s,filter .15s}
 .btn:active{transform:scale(.98)}
-.btn.p{background:var(--g);color:#04210F;box-shadow:0 6px 22px rgba(39,227,111,.28)}
-.btn.s{background:transparent;color:var(--g);border:1.5px solid var(--g)}
-.btn.d{background:rgba(255,97,97,.12);color:var(--red);border:1.5px solid rgba(255,97,97,.5)}
+.btn.p{background:var(--g);color:var(--gink);box-shadow:0 5px 18px var(--glow)}
+.btn.s{background:transparent;color:var(--gt);border:1.5px solid var(--g)}
+.btn.d{background:transparent;color:var(--red);border:1.5px solid var(--red)}
 .btn.g{background:var(--card2);color:var(--txt);border:1px solid var(--line)}
-.btn.xs{width:auto;padding:8px 12px;font-size:12.5px;border-radius:10px}
-.btn:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+.btn.xs{width:auto;padding:7px 11px;font-size:12.5px;border-radius:10px}
+.btn:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
 .btns{display:flex;gap:8px;flex-wrap:wrap}
 .btns .btn{flex:1}
 
-label{display:block;font-size:12px;font-weight:700;color:var(--mut);margin:12px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+label{display:block;font-size:11.5px;font-weight:800;color:var(--mut);margin:11px 0 5px;text-transform:uppercase;letter-spacing:.5px}
 label:first-child{margin-top:0}
-input[type=text],input[type=email],input[type=password],input[type=search]{
-  width:100%;background:var(--bg2);border:1.5px solid var(--line);color:var(--txt);border-radius:12px;padding:13px 14px;font-size:15px;outline:none}
-input:focus{border-color:var(--g)}
-input::placeholder{color:#5c7767}
+input[type=text],input[type=email],input[type=password],input[type=search],input[type=number],select{
+  width:100%;background:var(--card2);border:1.5px solid var(--line);color:var(--txt);border-radius:12px;padding:12px 13px;font-size:15px;outline:none}
+input:focus,select:focus{border-color:var(--g)}
+input::placeholder{color:var(--mut);opacity:.7}
 
-/* hero */
-.hero{text-align:center;padding:12px 0 6px}
-.hero svg{width:210px;max-width:62vw;height:auto;animation:flut 5s ease-in-out infinite}
-@keyframes flut{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-.hero h1{font-size:30px;line-height:1.1;margin:10px 0 10px;font-weight:800;letter-spacing:-.5px}
-.hero h1 em{font-style:normal;color:var(--g)}
-.hero p{color:var(--mut);font-size:14.5px;margin:0 auto 20px;max-width:340px}
-.ck{animation:pulse 2.4s ease-in-out infinite}
-.ck2{animation-delay:.6s}.ck3{animation-delay:1.2s}
-@keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
+/* avisos e destaques */
+.hscroll{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 8px;margin:0 -2px;scrollbar-width:none;scroll-snap-type:x proximity}
+.hscroll::-webkit-scrollbar{display:none}
+.hscroll>*{scroll-snap-align:start}
+.bn{flex:none;min-width:80%;max-width:80%;border-radius:var(--r);padding:12px 14px;border:1px solid var(--line)}
+.bn b{display:block;font-size:14.5px;margin-bottom:2px}
+.bn span{font-size:12.5px;color:var(--mut)}
+.bn.verde{background:linear-gradient(135deg,rgba(43,200,102,.28),rgba(43,200,102,.07));border-color:rgba(43,200,102,.5)}
+.bn.amarelo{background:linear-gradient(135deg,rgba(245,166,35,.30),rgba(245,166,35,.07));border-color:rgba(245,166,35,.55)}
+.bn.azul{background:linear-gradient(135deg,rgba(59,130,246,.26),rgba(59,130,246,.06));border-color:rgba(59,130,246,.5)}
+.bn.roxo{background:linear-gradient(135deg,rgba(139,92,246,.26),rgba(139,92,246,.06));border-color:rgba(139,92,246,.5)}
+.sec-t{margin:6px 0 7px;font-size:12px;font-weight:800;color:var(--mut);text-transform:uppercase;letter-spacing:.7px}
 
-/* filtros e jogos */
-.filtros{position:sticky;top:0;z-index:5;background:linear-gradient(var(--bg) 80%,transparent);padding:2px 0 8px}
-.chips{display:flex;gap:6px;overflow-x:auto;padding:10px 0 2px;scrollbar-width:none}
+/* filtros */
+.filtros{position:sticky;top:0;z-index:5;background:linear-gradient(var(--bg) 82%,transparent);padding:2px 0 6px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:8px 0 2px;scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
-.chip{flex:none;border:1px solid var(--line);background:var(--card);color:var(--mut);border-radius:999px;padding:7px 14px;font-weight:700;font-size:12.5px;cursor:pointer}
-.chip.on{border-color:var(--g);color:var(--g);background:rgba(39,227,111,.1)}
-.dia{margin:16px 0 8px;font-size:12px;font-weight:800;color:var(--mut);text-transform:uppercase;letter-spacing:.8px}
-.ev{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:13px;margin-bottom:10px}
-.ev-top{display:flex;justify-content:space-between;gap:8px;font-size:11.5px;color:var(--mut);margin-bottom:8px}
-.ev-top .lg{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ev-top .hr{white-space:nowrap;font-weight:700;color:var(--txt)}
-.ev-t{font-weight:800;font-size:15px;margin-bottom:10px}
-.ev-t span{color:var(--mut);font-weight:600;margin:0 4px}
-.odds{display:grid;gap:8px}
-.odds.n3{grid-template-columns:repeat(3,1fr)}
-.odds.n2{grid-template-columns:repeat(2,1fr)}
-.odd{background:var(--card2);border:1.5px solid var(--line);color:var(--txt);border-radius:12px;padding:9px 6px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:all .12s}
-.odd small{font-size:11px;color:var(--mut);font-weight:700;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.odd b{font-size:17px}
-.odd.on{background:var(--g);border-color:var(--g);color:#04210F;box-shadow:0 4px 18px rgba(39,227,111,.35)}
-.odd.on small{color:#0b4a24}
-.odd:disabled{opacity:.35;cursor:not-allowed}
-.vazio{text-align:center;color:var(--mut);padding:30px 10px;font-size:14px}
+.chip{flex:none;border:1px solid var(--line);background:var(--card);color:var(--mut);border-radius:999px;padding:6px 13px;font-weight:700;font-size:12.5px;cursor:pointer}
+.chip.on{border-color:var(--g);color:var(--gt);background:rgba(43,200,102,.13)}
+.dia{margin:12px 0 6px;font-size:11.5px;font-weight:800;color:var(--mut);text-transform:uppercase;letter-spacing:.8px}
 
-.barra{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:10px 16px calc(12px + env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,var(--bg) 35%)}
-.barra .in{max-width:520px;margin:0 auto;background:var(--g);color:#04210F;border-radius:16px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;box-shadow:0 10px 30px rgba(39,227,111,.35);font-weight:800}
-.barra .in span{font-size:13px;font-weight:700;opacity:.8;display:block}
+/* jogo compacto */
+.ev{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:8px 10px;margin-bottom:7px;box-shadow:var(--shadow);
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px 10px;align-items:center}
+.ev.dest{border-color:var(--g)}
+.ev.vert{grid-template-columns:minmax(0,1fr);flex:none;width:292px;margin-bottom:0}
+.ev-meta{display:flex;gap:6px;align-items:center;font-size:11px;color:var(--mut);margin-bottom:1px;white-space:nowrap;overflow:hidden}
+.ev-meta .lg{overflow:hidden;text-overflow:ellipsis}
+.ev-meta b{color:var(--txt);flex:none}
+.ev-t{font-size:13.5px;font-weight:700;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.odds{display:flex;gap:5px}
+.odd{width:54px;background:var(--card2);border:1.5px solid var(--line);color:var(--txt);border-radius:10px;padding:5px 2px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;line-height:1.15;transition:all .1s}
+.odd small{font-size:10px;color:var(--mut);font-weight:700;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.odd b{font-size:14.5px}
+.odd.on{background:var(--g);border-color:var(--g);color:var(--gink);box-shadow:0 3px 12px var(--glow)}
+.odd.on small{color:var(--gink);opacity:.75}
+.odd:disabled{opacity:.35;cursor:not-allowed}
+.ev.vert .odds .odd{flex:1;width:auto}
+.mais{background:var(--card2);border:1px solid var(--line);color:var(--gt);font-weight:800;font-size:11px;padding:1px 7px;border-radius:999px;cursor:pointer;margin-left:auto;flex:none}
+.extras{grid-column:1/-1;border-top:1px dashed var(--line);padding-top:6px;display:flex;flex-direction:column;gap:6px}
+.xr{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.xl{font-size:12px;color:var(--mut);font-weight:600}
+.xo{display:flex;gap:5px}
+.xo .odd{width:auto;min-width:84px;padding:5px 8px;flex-direction:row;gap:6px;align-items:center;justify-content:center}
+.xo .odd small{max-width:96px}
+.vazio{text-align:center;color:var(--mut);padding:28px 10px;font-size:14px}
+
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:10px 14px calc(12px + env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,var(--bg) 40%)}
+.barra .in{max-width:520px;margin:0 auto;background:var(--g);color:var(--gink);border-radius:16px;padding:11px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;box-shadow:0 8px 26px var(--glow);font-weight:800}
+.barra .in span{font-size:12.5px;font-weight:700;opacity:.8;display:block}
 .barra .in b{font-size:20px}
 
-.sheet-bg{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:40;display:flex;align-items:flex-end}
-.sheet{width:100%;max-width:520px;margin:0 auto;background:var(--bg2);border:1px solid var(--line);border-bottom:0;border-radius:22px 22px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));max-height:86vh;overflow:auto}
-.pk{display:flex;gap:10px;align-items:center;padding:11px 0;border-bottom:1px dashed var(--line)}
+.sheet-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:40;display:flex;align-items:flex-end}
+.sheet{width:100%;max-width:520px;margin:0 auto;background:var(--card);border-radius:22px 22px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));max-height:88vh;overflow:auto}
+.pk{display:flex;gap:10px;align-items:center;padding:10px 0;border-bottom:1px dashed var(--line)}
 .pk .x{background:none;border:0;color:var(--red);font-size:20px;cursor:pointer;padding:4px 8px}
-.pk .o{font-weight:800;color:var(--g);font-size:16px}
-.tot{display:flex;justify-content:space-between;align-items:center;margin:14px 0}
-.tot b{font-size:26px;color:var(--g)}
+.pk .o{font-weight:800;color:var(--gt);font-size:16px}
+.tot{display:flex;justify-content:space-between;align-items:center;margin:12px 0}
+.tot b{font-size:26px;color:var(--gt)}
 
 /* bilhete */
-.tk{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:12px;overflow:hidden}
-.tk-h{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:2px dashed var(--line)}
-.code{font-weight:800;font-size:22px;letter-spacing:1.5px}
-.badge{font-size:11.5px;font-weight:800;padding:5px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.4px}
-.st-pendente{background:rgba(255,194,71,.15);color:var(--amb)}
-.st-validado{background:rgba(39,227,111,.16);color:var(--g)}
-.st-recusado{background:rgba(255,97,97,.15);color:var(--red)}
-.tk-b{padding:6px 16px}
-.it{padding:11px 0;border-bottom:1px solid var(--line)}
+.tk{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:11px;overflow:hidden;box-shadow:var(--shadow)}
+.tk-h{display:flex;justify-content:space-between;align-items:center;padding:13px 15px;border-bottom:2px dashed var(--line)}
+.code{font-weight:800;font-size:21px;letter-spacing:1.5px}
+.badge{font-size:11px;font-weight:800;padding:5px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.4px}
+.st-pendente{background:var(--ambbg);color:var(--amb)}
+.st-validado{background:rgba(43,200,102,.18);color:var(--gt)}
+.st-recusado{background:rgba(217,54,54,.13);color:var(--red)}
+.tk-b{padding:4px 15px}
+.it{padding:10px 0;border-bottom:1px solid var(--line)}
 .it:last-child{border-bottom:0}
 .it .lg{font-size:11.5px;color:var(--mut)}
-.it .jg{font-weight:700;margin:2px 0}
-.it .pl{display:flex;justify-content:space-between;color:var(--g);font-weight:800}
-.tk-f{padding:14px 16px;background:var(--card2);display:flex;justify-content:space-between;align-items:center}
-.tk-f b{font-size:24px;color:var(--g)}
-.tk-m{padding:10px 16px;font-size:13px;color:var(--mut);border-bottom:1px solid var(--line)}
+.it .jg{font-weight:700;margin:1px 0}
+.it .pl{display:flex;justify-content:space-between;color:var(--gt);font-weight:800}
+.tk-f{padding:13px 15px;background:var(--card2);display:flex;justify-content:space-between;align-items:center}
+.tk-f b{font-size:23px;color:var(--gt)}
+.tk-m{padding:9px 15px;font-size:13px;color:var(--mut);border-bottom:1px solid var(--line)}
 .tk-m strong{color:var(--txt)}
-.aviso{background:rgba(255,194,71,.1);border:1px solid rgba(255,194,71,.35);color:var(--amb);border-radius:12px;padding:11px 13px;font-size:13px;margin:10px 0}
-.ok{background:rgba(39,227,111,.1);border:1px solid rgba(39,227,111,.35);color:var(--g);border-radius:12px;padding:11px 13px;font-size:13px;margin:10px 0}
-
-.big{text-align:center;padding:10px 0}
-.big .code{font-size:34px;color:var(--g);margin:6px 0}
-.rodape{margin-top:26px;padding:14px;font-size:11.5px;color:#5f7b6b;text-align:center;line-height:1.5}
-
+.aviso{background:var(--ambbg);border:1px solid rgba(245,166,35,.45);color:var(--amb);border-radius:12px;padding:10px 13px;font-size:13px;margin:10px 0}
+.ok{background:rgba(43,200,102,.12);border:1px solid rgba(43,200,102,.45);color:var(--gt);border-radius:12px;padding:10px 13px;font-size:13px;margin:10px 0}
+.big{text-align:center;padding:8px 0}
+.big .code{font-size:34px;color:var(--gt);margin:4px 0}
+.rodape{margin-top:24px;padding:12px;font-size:11.5px;color:var(--mut);opacity:.8;text-align:center;line-height:1.5}
 .gate{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
 .gate .card{max-width:380px;text-align:center;padding:26px 20px}
-.gate h1{font-size:46px;margin:0;color:var(--g)}
-
+.gate h1{font-size:44px;margin:0;color:var(--gt)}
 #toasts{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));left:0;right:0;z-index:99;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none;padding:0 16px}
-.toast{background:var(--card2);border:1px solid var(--line);color:var(--txt);padding:11px 16px;border-radius:12px;font-weight:700;font-size:14px;box-shadow:0 8px 30px rgba(0,0,0,.5);max-width:420px;animation:ti .2s ease-out}
-.toast.erro{border-color:var(--red);color:#ffb1b1}
-.toast.ok{border-color:var(--g);color:var(--g)}
+.toast{background:var(--txt);color:var(--bg);padding:10px 16px;border-radius:12px;font-weight:700;font-size:14px;box-shadow:0 8px 28px rgba(0,0,0,.3);max-width:420px;animation:ti .2s ease-out}
+.toast.erro{background:var(--red);color:#fff}
+.toast.ok{background:var(--g);color:var(--gink)}
 @keyframes ti{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
-.tip{display:inline-block;background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:2px 8px;font-size:12px;font-weight:700;color:var(--txt)}
-a{color:var(--g)}
+.tip{display:inline-block;background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:2px 8px;font-size:12px;font-weight:700}
+a{color:var(--gt)}
+.slim{padding:10px 12px}
+.novoap{display:none;margin-top:8px}
+
+/* status e cupom */
+.st-aguardando{background:var(--ambbg);color:var(--amb)}
+.st-andamento{background:rgba(37,99,235,.14);color:var(--blue)}
+.st-ganhou{background:rgba(43,200,102,.2);color:var(--gt)}
+.st-perdeu{background:rgba(217,54,54,.14);color:var(--red)}
+.st-anulado{background:rgba(120,130,125,.2);color:var(--mut)}
+.cupom{background:var(--paper);border:1.5px solid var(--g);border-radius:16px;padding:16px 16px 14px;margin-bottom:12px;box-shadow:var(--shadow);font-size:13px}
+.cp-t{text-align:center;font-weight:800;letter-spacing:5px;font-size:14px}
+.cp-sub{text-align:center;color:var(--mut);font-size:11px;margin:2px 0 4px}
+.cp-sep{border:0;border-top:1.5px dashed var(--g);margin:10px 0;opacity:.55}
+.cp-row{display:flex;justify-content:space-between;gap:10px;line-height:1.55}
+.cp-k{color:var(--mut)}
+.cp-it{padding:2px 0}
+.cp-b{font-weight:800}
+.cp-liga{color:var(--mut);font-size:12px}
+.cp-jogo{font-weight:700;margin:1px 0 4px}
+.cp-ok{color:var(--gt);font-weight:800}.cp-no{color:var(--red);font-weight:800}.cp-and{color:var(--blue);font-weight:800}.cp-an{color:var(--mut);font-weight:800}
+.cp-code{text-align:center;font-size:24px;font-weight:800;letter-spacing:2px;margin:2px 0}
+.cp-cap{text-align:center;color:var(--mut);font-size:11px;letter-spacing:3px}
+.cp-stamp{margin-top:12px;border-radius:10px;padding:11px;text-align:center;font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:15px;color:#fff}
+.cp-stamp.st-ganhou{background:var(--g);color:var(--gink)}
+.cp-stamp.st-perdeu{background:#D93636}
+.cp-stamp.st-andamento{background:#2563EB}
+.cp-stamp.st-aguardando{background:#F5A623;color:#3a2600}
+.cp-stamp.st-anulado{background:#7B8A82}
+.cp-stamp.st-recusado{background:#D93636}
+.cp-foot{margin-top:10px;font-size:10.5px;color:var(--mut);text-align:center;line-height:1.45}
+.row input[type=number]{width:74px;text-align:center;padding:10px 6px}
 </style>
 </head>
 <body>
@@ -158,19 +207,19 @@ a{color:var(--g)}
 
 <script>
 /* =====================================================================
-   CONFIGURAÇÃO — preencha DEPOIS de criar o projeto no Supabase.
-   Enquanto estiver vazio, o site roda em MODO DEMONSTRAÇÃO (dados fictícios
-   salvos só no seu navegador).
+   CONFIGURAÇÃO — URL e chave "anon public" do seu projeto no Supabase.
+   Vazio = MODO DEMONSTRAÇÃO (dados fictícios, só neste navegador).
    ===================================================================== */
 const CONFIG = {
-  SUPABASE_URL: "https://lqutpolpyrbvayqsivfz.supabase.co",       // ex: "https://abcdxyz.supabase.co"
-  SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxxdXRwb2xweXJidmF5cXNpdmZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEzNzcxOTcsImV4cCI6MjEwNjk1MzE5N30.hMty4zPTXiJe6B0Xk_jenjpcY2Lfwz_7IkFEVbntxss",  // chave "anon public" (pode ficar no site, é pública)
+  SUPABASE_URL: "https://lqutpolpyrbvayqsivfz.supabase.co",
+  SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxxdXRwb2xweXJidmF5cXNpdmZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEzNzcxOTcsImV4cCI6MjEwNjk1MzE5N30.hMty4zPTXiJe6B0Xk_jenjpcY2Lfwz_7IkFEVbntxss",
 };
 const MODO_DEMO = !CONFIG.SUPABASE_URL || !CONFIG.SUPABASE_ANON_KEY;
 
 /* ---------------------------- utilidades ---------------------------- */
 const $ = (s, r = document) => r.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const norm = (s) => String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
 const fmtOdd = (n) => Number(n).toFixed(2);
 const fmtHora = (iso) => new Date(iso).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
 const fmtDataCurta = (iso) => new Date(iso).toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" });
@@ -184,8 +233,44 @@ function fmtDia(iso) {
 }
 const EMOJI = { Futebol: "⚽", Basquete: "🏀", MMA: "🥊", "Tênis": "🎾" };
 const emoji = (e) => EMOJI[e] || "🎯";
-const rotulo = (i) => (i.selecao === "casa" ? i.casa : i.selecao === "fora" ? i.fora : "Empate");
+const unidade = (esp) => (esp === "Futebol" ? "gols" : esp === "Basquete" ? "pontos" : "");
+const sinal = (n) => (Number(n) > 0 ? "+" + Number(n) : String(Number(n)));
+const abrev = (s) => (s.length > 11 ? s.slice(0, 10) + "…" : s);
 const baseUrl = () => location.href.split("?")[0].split("#")[0];
+const linkCupom = (cod) => `${baseUrl()}?b=${cod}`;
+const fmtDataCompleta = (iso) => new Date(iso).toLocaleString("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" }).replace(",", "");
+const SIT = { aguardando: "Aguardando validação", andamento: "Em andamento", ganhou: "Ganhou", perdeu: "Perdeu", anulado: "Anulado", recusado: "Recusado" };
+const RES = { pendente: ["⏳ Em andamento", "andamento", "cp-and"], ganhou: ["✔ Acertou", "ganhou", "cp-ok"], perdeu: ["✖ Errou", "perdeu", "cp-no"], anulado: ["↩ Anulado", "anulado", "cp-an"] };
+function situacaoBilhete(b) {
+  if (b.status === "pendente") return "aguardando";
+  if (b.status === "recusado") return "recusado";
+  const rs = b.itens.map((i) => i.resultado || "pendente");
+  if (rs.includes("perdeu")) return "perdeu";
+  if (rs.includes("pendente")) return "andamento";
+  if (rs.every((r) => r === "anulado")) return "anulado";
+  return "ganhou";
+}
+function nomeMercado(i) {
+  const m = i.mercado || "h2h";
+  if (m === "totals") return `Total de ${unidade(i.esporte_nome) || "pontos"}`;
+  if (m === "spreads") return "Handicap";
+  return i.esporte_nome === "Futebol" ? "Resultado final" : "Vencedor da partida";
+}
+const jogador = (b) => (b.apostador && b.apostador.apelido) || b.apelido_informado || "—";
+function textoCupom(b) {
+  return [`🟢 *ZSGREEN* — Bilhete *${b.codigo}*`, `Jogador: ${jogador(b)}`,
+    `${b.itens.length} ${b.itens.length === 1 ? "jogo" : "jogos"} · Cotação total: ${fmtOdd(b.odd_total)}`,
+    `Status: ${SIT[situacaoBilhete(b)]}`, "", `Acompanhe aqui: ${linkCupom(b.codigo)}`].join("\n");
+}
+function rotuloMercado(i) {
+  const m = i.mercado || "h2h";
+  if (m === "totals") return `${i.selecao === "mais" ? "Mais" : "Menos"} de ${Number(i.linha)} ${unidade(i.esporte_nome)}`.trim();
+  if (m === "spreads") {
+    const l = i.selecao === "casa" ? Number(i.linha) : -Number(i.linha);
+    return `${i.selecao === "casa" ? i.casa : i.fora} (${sinal(l)})`;
+  }
+  return i.selecao === "casa" ? i.casa : i.selecao === "fora" ? i.fora : "Empate";
+}
 function toast(msg, tipo = "") {
   const t = document.createElement("div");
   t.className = "toast " + tipo; t.textContent = msg;
@@ -194,10 +279,7 @@ function toast(msg, tipo = "") {
 }
 async function copiar(texto) {
   try { await navigator.clipboard.writeText(texto); }
-  catch (e) {
-    const ta = document.createElement("textarea"); ta.value = texto; document.body.appendChild(ta);
-    ta.select(); document.execCommand("copy"); ta.remove();
-  }
+  catch (e) { const ta = document.createElement("textarea"); ta.value = texto; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); }
 }
 function waLink(telefone, texto) {
   let n = String(telefone || "").replace(/\D/g, "");
@@ -205,31 +287,37 @@ function waLink(telefone, texto) {
   return `https://wa.me/${n}?text=${encodeURIComponent(texto)}`;
 }
 function textoBilhete(b) {
-  const l = [`🟢 *ZSGREEN* — Bilhete *${b.codigo}*`, `Apostador: ${b.apostador.apelido} (${b.apostador.nome})`, ""];
+  const l = [`🟢 *ZSGREEN* — Bilhete *${b.codigo}*`, `Enviado por: ${b.apelido_informado || "—"}`, ""];
   for (const i of b.itens) {
     l.push(`${emoji(i.esporte_nome)} ${i.casa} x ${i.fora} — ${fmtDataHora(i.inicio)}`);
-    l.push(`   ➜ ${rotulo(i)} @ ${fmtOdd(i.odd)}`);
+    l.push(`   ➜ ${rotuloMercado(i)} @ ${fmtOdd(i.odd)}`);
   }
   l.push("", `Odd total: *${fmtOdd(b.odd_total)}*`, "", `Para validar: ${baseUrl()}?v=${b.codigo}`);
   return l.join("\n");
 }
 const ERROS = {
-  ACESSO_INVALIDO: "Link inválido ou desativado. Peça um novo link ao seu supervisor.",
   BILHETE_VAZIO: "Escolha ao menos um jogo.",
   MUITOS_JOGOS: "O bilhete aceita no máximo 15 jogos.",
+  MUITOS_BILHETES: "Muitos bilhetes gerados agora. Tente de novo em alguns minutos.",
   EVENTO_INEXISTENTE: "Um dos jogos não está mais disponível. Atualize a lista.",
   EVENTO_JA_COMECOU: "Um dos jogos já começou (ou começa em menos de 5 min). Remova-o do bilhete.",
   EVENTO_REPETIDO: "Há dois palpites no mesmo jogo.",
   SELECAO_INVALIDA: "Palpite inválido.",
-  ODD_INDISPONIVEL: "Essa odd não está disponível.",
+  MERCADO_INVALIDO: "Mercado inválido.",
+  ODD_INDISPONIVEL: "Essa odd não está mais disponível. Atualize a lista.",
   NAO_AUTORIZADO: "Sem permissão para isso.",
   BILHETE_NAO_ENCONTRADO: "Bilhete não encontrado.",
   BILHETE_JA_PROCESSADO: "Esse bilhete já foi validado ou recusado.",
   PRAZO_ENCERRADO: "Prazo encerrado: o primeiro jogo do bilhete já começou.",
+  APOSTADOR_INVALIDO: "Escolha um apostador válido da sua lista.",
   NAO_PODE_DESATIVAR_A_SI_MESMO: "Você não pode desativar a si mesmo.",
+  TITULO_INVALIDO: "Escreva um título para o aviso.",
   CREDENCIAIS: "E-mail ou senha incorretos.",
   CONTA_SEM_ACESSO: "Essa conta não tem acesso ao painel.",
   EMAIL_EM_USO: "Já existe um login com esse e-mail.",
+  JOGO_NAO_COMECOU: "Esse jogo ainda não começou: só dá para lançar o placar depois do início.",
+  JOGO_NAO_ENCONTRADO: "Jogo não encontrado.",
+  PLACAR_INVALIDO: "Informe um placar válido (números a partir de 0).",
 };
 function msgErro(e) {
   const m = (e && e.message) || String(e);
@@ -238,40 +326,42 @@ function msgErro(e) {
 }
 
 /* =====================================================================
-   BACKEND DEMO — tudo no localStorage, com as MESMAS regras do servidor
+   BACKEND DEMO — localStorage, com as MESMAS regras do servidor
    ===================================================================== */
 function demoBackend() {
-  const KEY = "zs_demo_db_v1", SKEY = "zs_demo_sessao";
+  const KEY = "zs_demo_db_v2", SKEY = "zs_demo_sessao";
   const HORA = 3600e3;
   const uid = () => "id" + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+  const XF = { totals: [{ linha: 1.5, mais: 1.32, menos: 3.2 }, { linha: 2.5, mais: 1.95, menos: 1.85 }, { linha: 3.5, mais: 3.3, menos: 1.28 }] };
+  const XB = { totals: [{ linha: 221.5, mais: 1.9, menos: 1.9 }], spreads: [{ linha: -3.5, casa: 1.91, fora: 1.89 }] };
   const FIX = [
-    ["Futebol", "Brasileirão Série A", "Flamengo", "Palmeiras", [2.05, 3.30, 3.55]],
-    ["Futebol", "Brasileirão Série A", "Corinthians", "São Paulo", [2.60, 3.10, 2.85]],
-    ["Futebol", "Brasileirão Série A", "Grêmio", "Internacional", [2.45, 3.20, 2.95]],
-    ["Futebol", "Brasileirão Série A", "Fluminense", "Botafogo", [2.70, 3.15, 2.70]],
-    ["Futebol", "Brasileirão Série A", "Santos", "Vasco", [2.30, 3.25, 3.20]],
-    ["Futebol", "Brasileirão Série A", "Cruzeiro", "Atlético-MG", [2.55, 3.10, 2.90]],
-    ["Futebol", "Libertadores", "River Plate", "Boca Juniors", [2.40, 3.00, 3.10]],
-    ["Futebol", "Premier League", "Arsenal", "Liverpool", [2.25, 3.50, 3.05]],
-    ["Futebol", "Premier League", "Man City", "Chelsea", [1.65, 4.10, 4.80]],
-    ["Futebol", "La Liga", "Real Madrid", "Barcelona", [2.35, 3.60, 2.90]],
-    ["Futebol", "Champions League", "Bayern", "PSG", [2.10, 3.60, 3.30]],
-    ["Basquete", "NBA", "Lakers", "Celtics", [2.20, 1.70]],
-    ["Basquete", "NBA", "Warriors", "Heat", [1.85, 1.95]],
-    ["Basquete", "NBA", "Bucks", "Nuggets", [2.00, 1.82]],
-    ["MMA", "UFC (demo)", "R. Almeida", "T. Brandão", [1.55, 2.45]],
-    ["MMA", "UFC (demo)", "D. Moreira", "C. Lima", [2.10, 1.75]],
-    ["Tênis", "ATP (demo)", "L. Ferreira", "M. Duarte", [1.60, 2.30]],
-    ["Tênis", "ATP (demo)", "P. Santos", "J. Ribeiro", [1.95, 1.85]],
+    ["Futebol", "Brasileirão Série A", "Corinthians", "São Paulo", [2.60, 3.10, 2.85], XF],
+    ["Futebol", "Brasileirão Série A", "Flamengo", "Palmeiras", [2.05, 3.30, 3.55], XF, true],
+    ["Futebol", "Brasileirão Série A", "Grêmio", "Internacional", [2.45, 3.20, 2.95], XF],
+    ["Futebol", "Brasileirão Série A", "Fluminense", "Botafogo", [2.70, 3.15, 2.70], XF],
+    ["Futebol", "Brasileirão Série A", "Santos", "Vasco", [2.30, 3.25, 3.20], XF],
+    ["Futebol", "Brasileirão Série A", "Cruzeiro", "Atlético-MG", [2.55, 3.10, 2.90], XF],
+    ["Futebol", "Libertadores", "River Plate", "Boca Juniors", [2.40, 3.00, 3.10], XF],
+    ["Futebol", "Premier League", "Arsenal", "Liverpool", [2.25, 3.50, 3.05], XF],
+    ["Futebol", "Premier League", "Man City", "Chelsea", [1.65, 4.10, 4.80], XF],
+    ["Futebol", "La Liga", "Real Madrid", "Barcelona", [2.35, 3.60, 2.90], XF, true],
+    ["Futebol", "Champions League", "Bayern", "PSG", [2.10, 3.60, 3.30], XF],
+    ["Basquete", "NBA", "Lakers", "Celtics", [2.20, 1.70], XB],
+    ["Basquete", "NBA", "Warriors", "Heat", [1.85, 1.95], XB],
+    ["Basquete", "NBA", "Bucks", "Nuggets", [2.00, 1.82], XB],
+    ["MMA", "UFC (demo)", "R. Almeida", "T. Brandão", [1.55, 2.45], {}],
+    ["MMA", "UFC (demo)", "D. Moreira", "C. Lima", [2.10, 1.75], {}],
+    ["Tênis", "ATP (demo)", "L. Ferreira", "M. Duarte", [1.60, 2.30], {}],
+    ["Tênis", "ATP (demo)", "P. Santos", "J. Ribeiro", [1.95, 1.85], {}],
   ];
   const OFFS = [0.05, 2, 3, 5, 7, 20, 22, 26, 28, 30, 45, 48, 50, 52, 70, 72, 74, 96];
-  function gerarEventos() {
+  function gerarEventos(antigos = [], gen = 1) {
     const t0 = Date.now();
     return FIX.map((f, i) => ({
-      id: "demo-" + i, esporte_nome: f[0], liga: f[1], casa: f[2], fora: f[3],
+      id: `demo-${gen}-${i}`, esporte_nome: f[0], liga: f[1], casa: f[2], fora: f[3],
       inicio: new Date(t0 + OFFS[i] * HORA).toISOString(),
       odds: f[4].length === 3 ? { casa: f[4][0], empate: f[4][1], fora: f[4][2] } : { casa: f[4][0], fora: f[4][1] },
-      atualizado_em: new Date(t0).toISOString(),
+      extras: f[5] || {}, destaque: antigos.length ? !!(antigos[i] && antigos[i].destaque) : !!f[6], atualizado_em: new Date(t0).toISOString(),
     }));
   }
   function seed() {
@@ -280,14 +370,22 @@ function demoBackend() {
         { id: "u-admin", nome: "Admin Demo", role: "admin", ativo: true, email: "admin@zsgreen.demo", senha: "admin123", telefone: null },
         { id: "u-sup1", nome: "Supervisor Demo", role: "supervisor", ativo: true, email: "super@zsgreen.demo", senha: "super123", telefone: "11999990000" },
       ],
-      apostadores: [{ id: "a1", supervisor_id: "u-sup1", nome: "Carlos Silva", apelido: "Carlão", token: "demo-amigo", ativo: true, criado_em: new Date().toISOString() }],
-      eventos: gerarEventos(), eventosEm: Date.now(), bilhetes: [],
+      apostadores: [
+        { id: "a1", supervisor_id: "u-sup1", nome: "Carlos Silva", apelido: "Carlão", ativo: true, criado_em: new Date().toISOString() },
+        { id: "a2", supervisor_id: "u-sup1", nome: "Maria Souza", apelido: "Mih", telefone: "11988887777", ativo: true, criado_em: new Date().toISOString() },
+      ],
+      banners: [
+        { id: "b1", titulo: "🔥 Rodada do Brasileirão", texto: "Monte seu bilhete e envie para validar antes do 1º jogo.", cor: "verde", ativo: true },
+        { id: "b2", titulo: "💡 Dica", texto: "Toque no “+3 ▾” ao lado do horário para ver mais/menos gols.", cor: "amarelo", ativo: true },
+      ],
+      eventos: gerarEventos(), eventosEm: Date.now(), bilhetes: [], placares: {}, gen: 1,
     };
   }
   function load() {
     let db; try { db = JSON.parse(localStorage.getItem(KEY)); } catch (e) {}
     if (!db) db = seed();
-    if (Date.now() - db.eventosEm > 12 * HORA) { db.eventos = gerarEventos(); db.eventosEm = Date.now(); }
+    if (!db.placares) db.placares = {};
+    if (Date.now() - db.eventosEm > 12 * HORA) { db.gen = (db.gen || 1) + 1; db.eventos = gerarEventos(db.eventos, db.gen); db.eventosEm = Date.now(); }
     return db;
   }
   const save = (db) => localStorage.setItem(KEY, JSON.stringify(db));
@@ -296,36 +394,52 @@ function demoBackend() {
   const exigeAdmin = (db) => { const p = exigeStaff(db); if (p.role !== "admin") throw new Error("NAO_AUTORIZADO"); return p; };
   const pub = (p) => ({ id: p.id, nome: p.nome, role: p.role, ativo: p.ativo, telefone: p.telefone, email: p.email });
   function bilheteJson(db, b) {
-    const a = db.apostadores.find((x) => x.id === b.apostador_id);
-    const sp = db.perfis.find((x) => x.id === a.supervisor_id);
+    const a = b.apostador_id ? db.apostadores.find((x) => x.id === b.apostador_id) : null;
+    const sp = a ? db.perfis.find((x) => x.id === a.supervisor_id) : null;
     const vp = db.perfis.find((x) => x.id === b.validado_por);
     return {
       id: b.id, codigo: b.codigo, status: b.status, odd_total: b.odd_total, criado_em: b.criado_em,
-      validado_em: b.validado_em || null, validado_por_nome: vp ? vp.nome : null,
-      apostador: { nome: a.nome, apelido: a.apelido }, supervisor_nome: sp.nome,
-      itens: [...b.itens].sort((x, y) => new Date(x.inicio) - new Date(y.inicio)),
+      validado_em: b.validado_em || null, validado_por_nome: vp ? vp.nome : null, apelido_informado: b.apelido_informado || null,
+      apostador: a ? { nome: a.nome, apelido: a.apelido } : null, supervisor_nome: sp ? sp.nome : null,
+      itens: b.itens.map((i) => { const pl = db.placares[i.evento_id]; return { ...i, resultado: i.resultado || "pendente", placar: pl ? { casa: pl.casa, fora: pl.fora, anulado: !!pl.anulado } : null }; })
+        .sort((x, y) => new Date(x.inicio) - new Date(y.inicio)),
     };
   }
-  const achaPorToken = (db, token) => {
-    const a = db.apostadores.find((x) => x.token === token && x.ativo);
-    const p = a && db.perfis.find((x) => x.id === a.supervisor_id && x.ativo);
-    return a && p ? a : null;
-  };
   const achaBilhete = (db, cod) => db.bilhetes.find((b) => b.codigo === String(cod).trim().toUpperCase());
   const primeiroJogo = (b) => Math.min(...b.itens.map((i) => new Date(i.inicio).getTime()));
-  const delay = (v) => new Promise((r) => setTimeout(() => r(v), 40));
+  const delay = (v) => new Promise((r) => setTimeout(() => r(v), 30));
+
+  function processa(codigo, novo, apostadorId) {
+    const db = load(), p = exigeStaff(db), b = achaBilhete(db, codigo);
+    if (!b) throw new Error("BILHETE_NAO_ENCONTRADO");
+    if (b.status !== "pendente") throw new Error("BILHETE_JA_PROCESSADO");
+    if (novo === "validado") {
+      if (primeiroJogo(b) <= Date.now()) throw new Error("PRAZO_ENCERRADO");
+      if (!db.apostadores.some((a) => a.id === apostadorId && a.ativo && a.supervisor_id === p.id)) throw new Error("APOSTADOR_INVALIDO");
+      b.apostador_id = apostadorId;
+    }
+    b.status = novo; b.validado_por = p.id; b.validado_em = new Date().toISOString(); save(db);
+    return Promise.resolve(bilheteJson(db, b));
+  }
+
+  function resultadoItem(i, p) {
+    if (!p) return "pendente";
+    if (p.anulado) return "anulado";
+    const gc = p.casa, gf = p.fora;
+    if (i.mercado === "h2h") return (i.selecao === "casa" && gc > gf) || (i.selecao === "fora" && gf > gc) || (i.selecao === "empate" && gc === gf) ? "ganhou" : "perdeu";
+    const l = Number(i.linha);
+    if (i.mercado === "totals") { const t = gc + gf; if (t === l) return "anulado"; return (i.selecao === "mais" && t > l) || (i.selecao === "menos" && t < l) ? "ganhou" : "perdeu"; }
+    if (i.mercado === "spreads") { if (gc + l === gf) return "anulado"; return (i.selecao === "casa" && gc + l > gf) || (i.selecao === "fora" && gf > gc + l) ? "ganhou" : "perdeu"; }
+    return i.resultado || "pendente";
+  }
+  function aplicarPlacar(db, evId) { for (const b of db.bilhetes) for (const i of b.itens) if (i.evento_id === evId) i.resultado = resultadoItem(i, db.placares[evId]); }
 
   return {
     nome: "demo",
-    async apostadorInfo(token) {
-      const db = load(), a = achaPorToken(db, token); if (!a) return null;
-      const p = db.perfis.find((x) => x.id === a.supervisor_id);
-      return delay({ nome: a.nome, apelido: a.apelido, supervisor_nome: p.nome, supervisor_telefone: p.telefone });
-    },
     async eventos() { const db = load(); save(db); return delay(db.eventos.filter((e) => new Date(e.inicio) > new Date()).sort((a, b) => new Date(a.inicio) - new Date(b.inicio))); },
-    async criarBilhete(token, itens) {
-      const db = load(), a = achaPorToken(db, token);
-      if (!a) throw new Error("ACESSO_INVALIDO");
+    async banners() { const db = load(), p = perfilLogado(db); return delay(db.banners.filter((b) => b.ativo || (p && p.role === "admin"))); },
+    async criarBilhete(itens, apelido) {
+      const db = load();
       if (!Array.isArray(itens) || !itens.length) throw new Error("BILHETE_VAZIO");
       if (itens.length > 15) throw new Error("MUITOS_JOGOS");
       const vistos = new Set(); let total = 1; const linhas = [];
@@ -334,20 +448,28 @@ function demoBackend() {
         if (!ev) throw new Error("EVENTO_INEXISTENTE");
         if (new Date(ev.inicio).getTime() < Date.now() + 5 * 60e3) throw new Error("EVENTO_JA_COMECOU");
         if (vistos.has(ev.id)) throw new Error("EVENTO_REPETIDO"); vistos.add(ev.id);
-        if (!["casa", "empate", "fora"].includes(it.selecao)) throw new Error("SELECAO_INVALIDA");
-        const odd = ev.odds[it.selecao]; if (!odd) throw new Error("ODD_INDISPONIVEL");
-        linhas.push({ evento_id: ev.id, esporte_nome: ev.esporte_nome, liga: ev.liga, casa: ev.casa, fora: ev.fora, inicio: ev.inicio, selecao: it.selecao, odd });
+        const m = it.mercado || "h2h"; let odd = null, linha = null;
+        if (m === "h2h") {
+          if (!["casa", "empate", "fora"].includes(it.selecao)) throw new Error("SELECAO_INVALIDA");
+          odd = ev.odds[it.selecao];
+        } else if (m === "totals" || m === "spreads") {
+          if (!(m === "totals" ? ["mais", "menos"] : ["casa", "fora"]).includes(it.selecao)) throw new Error("SELECAO_INVALIDA");
+          linha = Number(it.linha);
+          const l = ((ev.extras || {})[m] || []).find((x) => Number(x.linha) === linha); odd = l ? l[it.selecao] : null;
+        } else throw new Error("MERCADO_INVALIDO");
+        if (!odd) throw new Error("ODD_INDISPONIVEL");
+        linhas.push({ evento_id: ev.id, esporte_nome: ev.esporte_nome, liga: ev.liga, casa: ev.casa, fora: ev.fora, inicio: ev.inicio, mercado: m, selecao: it.selecao, linha, odd });
         total *= odd;
       }
       const AL = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; let codigo;
       do { codigo = "ZS-" + Array.from({ length: 6 }, () => AL[Math.floor(Math.random() * 32)]).join(""); } while (achaBilhete(db, codigo));
-      const b = { id: uid(), codigo, apostador_id: a.id, status: "pendente", odd_total: Math.round(total * 100) / 100, criado_em: new Date().toISOString(), itens: linhas };
+      const b = { id: uid(), codigo, apostador_id: null, apelido_informado: String(apelido || "").trim().slice(0, 30) || null, status: "pendente", odd_total: Math.round(total * 100) / 100, criado_em: new Date().toISOString(), itens: linhas };
       db.bilhetes.push(b); save(db);
       return delay({ codigo, odd_total: b.odd_total });
     },
-    async meusBilhetes(token) {
-      const db = load(), a = achaPorToken(db, token); if (!a) return [];
-      return delay(db.bilhetes.filter((b) => b.apostador_id === a.id).sort((x, y) => new Date(y.criado_em) - new Date(x.criado_em)).slice(0, 40).map((b) => bilheteJson(db, b)));
+    async bilhetesPorCodigos(codigos) {
+      const db = load(), cs = (codigos || []).slice(0, 30).map((c) => String(c).trim().toUpperCase());
+      return delay(db.bilhetes.filter((b) => cs.includes(b.codigo)).sort((x, y) => new Date(y.criado_em) - new Date(x.criado_em)).map((b) => bilheteJson(db, b)));
     },
     async login(email, senha) {
       const db = load();
@@ -362,26 +484,23 @@ function demoBackend() {
       const db = load(), p = exigeStaff(db);
       return delay(db.apostadores.filter((a) => p.role === "admin" || a.supervisor_id === p.id).sort((x, y) => new Date(y.criado_em) - new Date(x.criado_em)));
     },
-    async criarApostador(nome, apelido) {
+    async criarApostador(nome, apelido, telefone) {
       const db = load(), p = exigeStaff(db);
-      const a = { id: uid(), supervisor_id: p.id, nome, apelido, token: uid() + uid(), ativo: true, criado_em: new Date().toISOString() };
+      const a = { id: uid(), supervisor_id: p.id, nome, apelido, telefone: telefone ? String(telefone).replace(/\D/g, "") : null, ativo: true, criado_em: new Date().toISOString() };
       db.apostadores.push(a); save(db); return delay(a);
     },
-    async setApostadorAtivo(id, ativo) {
-      const db = load(), p = exigeStaff(db);
-      const a = db.apostadores.find((x) => x.id === id && x.supervisor_id === p.id); if (a) a.ativo = ativo; save(db);
-    },
+    async setApostadorAtivo(id, ativo) { const db = load(), p = exigeStaff(db); const a = db.apostadores.find((x) => x.id === id && x.supervisor_id === p.id); if (a) a.ativo = ativo; save(db); },
     async obterBilhete(codigo) {
       const db = load(); exigeStaff(db);
       const b = achaBilhete(db, codigo); if (!b) return null;
-      return delay({ ...bilheteJson(db, b), pode_validar: b.status === "pendente" && primeiroJogo(b) > Date.now(), primeiro_jogo: new Date(primeiroJogo(b)).toISOString() });
+      return delay({ ...bilheteJson(db, b), pode_validar: b.status === "pendente" && primeiroJogo(b) > Date.now(), primeiro_jogo: new Date(primeiroJogo(b)).toISOString(), apostador_id: b.apostador_id });
     },
-    async validarBilhete(codigo) { return processa(codigo, "validado"); },
+    async validarBilhete(codigo, apostadorId) { return processa(codigo, "validado", apostadorId); },
     async recusarBilhete(codigo) { return processa(codigo, "recusado"); },
     async listarBilhetesSupervisor() {
       const db = load(), p = exigeStaff(db);
-      return delay(db.bilhetes.filter((b) => { const a = db.apostadores.find((x) => x.id === b.apostador_id); return b.validado_por === p.id || a.supervisor_id === p.id; })
-        .sort((x, y) => new Date(y.criado_em) - new Date(x.criado_em)).slice(0, 100).map((b) => bilheteJson(db, b)));
+      return delay(db.bilhetes.filter((b) => b.validado_por === p.id || (b.status === "pendente" && primeiroJogo(b) > Date.now()))
+        .sort((x, y) => new Date(y.criado_em) - new Date(x.criado_em)).slice(0, 150).map((b) => bilheteJson(db, b)));
     },
     async listarSupervisores() { const db = load(); exigeAdmin(db); return delay(db.perfis.filter((p) => p.role === "supervisor").map(pub)); },
     async criarSupervisor(d) {
@@ -398,21 +517,40 @@ function demoBackend() {
       if (id === me.id) throw new Error("NAO_PODE_DESATIVAR_A_SI_MESMO");
       const p = db.perfis.find((x) => x.id === id && x.role === "supervisor"); if (p) p.ativo = ativo; save(db);
     },
-    async adminListarBilhetes() {
+    async adminListarBilhetes() { const db = load(); exigeAdmin(db); return delay([...db.bilhetes].sort((x, y) => new Date(y.criado_em) - new Date(x.criado_em)).slice(0, 300).map((b) => bilheteJson(db, b))); },
+    async setDestaque(id, valor) { const db = load(); exigeAdmin(db); const e = db.eventos.find((x) => x.id === id); if (e) e.destaque = valor; save(db); },
+    async salvarBanner(d) {
       const db = load(); exigeAdmin(db);
-      return delay([...db.bilhetes].sort((x, y) => new Date(y.criado_em) - new Date(x.criado_em)).slice(0, 300).map((b) => bilheteJson(db, b)));
+      if (String(d.titulo || "").trim().length < 2) throw new Error("TITULO_INVALIDO");
+      db.banners.push({ id: uid(), titulo: d.titulo.trim().slice(0, 60), texto: String(d.texto || "").trim().slice(0, 160), cor: d.cor || "verde", ativo: true }); save(db);
     },
-    async sincronizarJogos() { const db = load(); exigeAdmin(db); db.eventos = gerarEventos(); db.eventosEm = Date.now(); save(db); return delay({ mensagem: "Demonstração: jogos fictícios regenerados.", detalhe: [] }); },
+    async setBannerAtivo(id, ativo) { const db = load(); exigeAdmin(db); const b = db.banners.find((x) => x.id === id); if (b) b.ativo = ativo; save(db); },
+    async excluirBanner(id) { const db = load(); exigeAdmin(db); db.banners = db.banners.filter((x) => x.id !== id); save(db); },
+    async sincronizarJogos() { const db = load(); exigeAdmin(db); db.gen = (db.gen || 1) + 1; db.eventos = gerarEventos(db.eventos, db.gen); db.eventosEm = Date.now(); save(db); return delay({ mensagem: "Demonstração: jogos fictícios regenerados.", detalhe: [] }); },
+    async jogosParaResultado() {
+      const db = load(); exigeStaff(db);
+      const mapa = {};
+      for (const b of db.bilhetes) if (b.status === "validado") for (const i of b.itens) {
+        const t = new Date(i.inicio).getTime();
+        if (t > Date.now() || t < Date.now() - 5 * 24 * HORA) continue;
+        const m = mapa[i.evento_id] || (mapa[i.evento_id] = { evento_id: i.evento_id, esporte_nome: i.esporte_nome, liga: i.liga, casa: i.casa, fora: i.fora, inicio: i.inicio, qtd: 0, placar: null });
+        m.qtd++;
+      }
+      for (const m of Object.values(mapa)) { const pl = db.placares[m.evento_id]; if (pl) m.placar = { casa: pl.casa, fora: pl.fora, anulado: !!pl.anulado, por: pl.por }; }
+      return delay(Object.values(mapa).sort((a, b) => new Date(b.inicio) - new Date(a.inicio)));
+    },
+    async registrarPlacar(evId, casa, fora, anulado) {
+      const db = load(), p = exigeStaff(db);
+      const itens = db.bilhetes.flatMap((b) => b.itens).filter((i) => i.evento_id === evId);
+      if (!itens.length) throw new Error("JOGO_NAO_ENCONTRADO");
+      if (Math.min(...itens.map((i) => new Date(i.inicio).getTime())) > Date.now()) throw new Error("JOGO_NAO_COMECOU");
+      if (!anulado && (casa == null || fora == null || casa < 0 || fora < 0)) throw new Error("PLACAR_INVALIDO");
+      db.placares[evId] = { casa: anulado ? null : casa, fora: anulado ? null : fora, anulado: !!anulado, por: p.nome };
+      aplicarPlacar(db, evId); save(db);
+    },
+    async apagarPlacar(evId) { const db = load(); exigeStaff(db); delete db.placares[evId]; aplicarPlacar(db, evId); save(db); },
     resetar() { localStorage.removeItem(KEY); localStorage.removeItem(SKEY); },
   };
-  function processa(codigo, novo) {
-    const db = load(), p = exigeStaff(db), b = achaBilhete(db, codigo);
-    if (!b) throw new Error("BILHETE_NAO_ENCONTRADO");
-    if (b.status !== "pendente") throw new Error("BILHETE_JA_PROCESSADO");
-    if (novo === "validado" && primeiroJogo(b) <= Date.now()) throw new Error("PRAZO_ENCERRADO");
-    b.status = novo; b.validado_por = p.id; b.validado_em = new Date().toISOString(); save(db);
-    return Promise.resolve(bilheteJson(db, b));
-  }
 }
 
 /* =====================================================================
@@ -445,10 +583,10 @@ async function supabaseBackend() {
   }
   return {
     nome: "supabase",
-    apostadorInfo: (token) => rpc("app_apostador", { p_token: token }),
-    eventos: () => tab(sb.from("eventos").select("*").gt("inicio", new Date().toISOString()).order("inicio").limit(600)),
-    criarBilhete: (token, itens) => rpc("criar_bilhete", { p_token: token, p_itens: itens }),
-    meusBilhetes: (token) => rpc("meus_bilhetes", { p_token: token }),
+    eventos: () => tab(sb.from("eventos").select("*").gt("inicio", new Date().toISOString()).order("inicio").limit(800)),
+    banners: () => tab(sb.from("banners").select("*").order("criado_em", { ascending: false })),
+    criarBilhete: (itens, apelido) => rpc("criar_bilhete", { p_itens: itens, p_apelido: apelido }),
+    bilhetesPorCodigos: (codigos) => rpc("bilhetes_por_codigos", { p_codigos: codigos }),
     async login(email, senha) {
       const { error } = await sb.auth.signInWithPassword({ email: String(email).trim(), password: senha });
       if (error) throw new Error("CREDENCIAIS");
@@ -458,20 +596,28 @@ async function supabaseBackend() {
     },
     sessao: perfilAtual,
     logout: () => sb.auth.signOut(),
-    listarApostadores: () => tab(sb.from("apostadores").select("id,nome,apelido,token,ativo,criado_em,supervisor_id").order("criado_em", { ascending: false })),
-    async criarApostador(nome, apelido) {
+    listarApostadores: () => tab(sb.from("apostadores").select("id,nome,apelido,telefone,ativo,criado_em,supervisor_id").order("criado_em", { ascending: false })),
+    async criarApostador(nome, apelido, telefone) {
       const { data: { session } } = await sb.auth.getSession();
-      return tab(sb.from("apostadores").insert({ supervisor_id: session.user.id, nome, apelido }).select().single());
+      const tel = telefone ? String(telefone).replace(/\D/g, "") : null;
+      return tab(sb.from("apostadores").insert({ supervisor_id: session.user.id, nome, apelido, telefone: tel }).select().single());
     },
     async setApostadorAtivo(id, ativo) { await tab(sb.from("apostadores").update({ ativo }).eq("id", id)); },
     obterBilhete: (codigo) => rpc("obter_bilhete", { p_codigo: codigo }),
-    validarBilhete: (codigo) => rpc("validar_bilhete", { p_codigo: codigo }),
+    validarBilhete: (codigo, apostadorId) => rpc("validar_bilhete", { p_codigo: codigo, p_apostador: apostadorId }),
     recusarBilhete: (codigo) => rpc("recusar_bilhete", { p_codigo: codigo }),
     listarBilhetesSupervisor: () => rpc("listar_bilhetes_supervisor"),
     listarSupervisores: () => tab(sb.from("profiles").select("id,nome,role,telefone,ativo,criado_em").eq("role", "supervisor").order("nome")),
     async criarSupervisor(d) { await chamaFuncao("criar-supervisor", d); },
     async setSupervisorAtivo(id, ativo) { await rpc("admin_set_ativo", { p_id: id, p_ativo: ativo }); },
     adminListarBilhetes: () => rpc("admin_listar_bilhetes"),
+    jogosParaResultado: () => rpc("jogos_para_resultado"),
+    async registrarPlacar(evId, casa, fora, anulado) { await rpc("registrar_placar", { p_evento: evId, p_casa: casa, p_fora: fora, p_anulado: !!anulado }); },
+    async apagarPlacar(evId) { await rpc("apagar_placar", { p_evento: evId }); },
+    async setDestaque(id, valor) { await rpc("admin_set_destaque", { p_id: id, p_valor: valor }); },
+    async salvarBanner(d) { await rpc("admin_salvar_banner", { p_titulo: d.titulo, p_texto: d.texto || "", p_cor: d.cor || "verde" }); },
+    async setBannerAtivo(id, ativo) { await rpc("admin_set_banner_ativo", { p_id: id, p_ativo: ativo }); },
+    async excluirBanner(id) { await rpc("admin_excluir_banner", { p_id: id }); },
     async sincronizarJogos() {
       const r = await chamaFuncao("sync-odds", { force: true });
       const lista = r.resultado || [];
@@ -487,263 +633,371 @@ async function supabaseBackend() {
    APLICAÇÃO
    ===================================================================== */
 const S = {
-  be: null, view: "carregando", token: null, amigo: null, perfil: null,
-  eventos: [], esporte: "Todos", busca: "", picks: {}, abaAmigo: "jogos",
-  bilhetesAmigo: [], ultimo: null, sheet: false,
-  abaStaff: "validar", codigoBusca: "", bilheteAberto: null, buscou: false,
+  be: null, view: "carregando", perfil: null,
+  eventos: [], banners: [], esporte: "Todos", busca: "", picks: {}, abertos: {}, aba: "jogos",
+  bilhetes: [], ultimo: null, sheet: false, picksOk: false,
+  apelido: "", codigos: [],
+  abaStaff: "validar", codigoBusca: "", bilheteAberto: null, buscou: false, selAp: "",
   apostadores: [], bilhetesStaff: [], filtroBil: "pendente", supervisores: [], bilhetesAdmin: [],
   codigoPendente: null, ultimaSync: "", chave: "", syncInfo: null,
+  cupom: null, cupomCodigo: null, jogosRes: [], timer: null,
 };
 const app = $("#app");
-const LOGO = `<svg viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#27E36F"/><path d="M9 16.5l4.5 4.5L23 11" stroke="#06100A" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const LOGO = `<svg viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#2BC866"/><path d="M9 16.5l4.5 4.5L23 11" stroke="#04281A" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const logoHtml = `<span class="logo">${LOGO}ZS<b>GREEN</b></span>`;
 const RODAPE = `<div class="rodape">ZSGREEN é um gerador de bilhetes entre amigos. Não processa pagamentos e não paga prêmios.<br>Proibido para menores de 18 anos. Jogue com responsabilidade.</div>`;
 const demoBanner = () => (MODO_DEMO ? `<div class="demo">MODO DEMONSTRAÇÃO — dados fictícios, salvos só neste navegador</div>` : "");
 const pageHtml = (inner) => `<div class="wrap">${demoBanner()}${inner}${RODAPE}</div>`;
+const temaBtn = () => `<button class="iconbtn" data-act="tema" title="Trocar tema claro/escuro">${document.documentElement.dataset.tema === "escuro" ? "☀️" : "🌙"}</button>`;
+const topo = (extra = "") => `<div class="top">${logoHtml}<div class="row">${extra}${temaBtn()}</div></div>`;
+
+/* mercados / palpites */
+const pickIgual = (a, b) => !!a && a.mercado === b.mercado && a.selecao === b.selecao && Number(a.linha ?? 0) === Number(b.linha ?? 0);
+function oddDe(e, p) {
+  if (!e || !p) return null;
+  if (p.mercado === "h2h") return e.odds[p.selecao] ?? null;
+  const l = ((e.extras || {})[p.mercado] || []).find((x) => Number(x.linha) === Number(p.linha));
+  return l ? l[p.selecao] ?? null : null;
+}
+const rotuloPick = (e, p) => rotuloMercado({ ...p, casa: e.casa, fora: e.fora, esporte_nome: e.esporte_nome });
 
 /* ------------------------------ boot ------------------------------ */
 async function boot() {
   try { S.be = MODO_DEMO ? demoBackend() : await supabaseBackend(); }
   catch (e) { app.innerHTML = pageHtml(`<div class="card"><h2>Ops</h2><p class="mut">${esc(msgErro(e))}</p></div>`); return; }
-  const q = new URLSearchParams(location.search);
-  S.token = q.get("a"); S.codigoPendente = q.get("v");
+  const qs = new URLSearchParams(location.search);
+  S.codigoPendente = qs.get("v"); S.cupomCodigo = qs.get("b");
+  S.apelido = localStorage.getItem("zs_apelido") || "";
+  try { S.codigos = JSON.parse(localStorage.getItem("zs_codigos")) || []; } catch (e) { S.codigos = []; }
   if (localStorage.getItem("zs_18") !== "1") { S.view = "gate"; return render(); }
   await iniciar();
 }
+async function carregarJogos() {
+  const [ev, bn] = await Promise.all([S.be.eventos(), S.be.banners().catch(() => [])]);
+  S.eventos = ev; S.banners = bn;
+  if (!S.picksOk) {
+    S.picksOk = true;
+    let pk = {}; try { pk = JSON.parse(localStorage.getItem("zs_picks")) || {}; } catch (e) {}
+    for (const [id, p] of Object.entries(pk)) {
+      const e = S.eventos.find((x) => x.id === id);
+      const pp = typeof p === "string" ? { mercado: "h2h", selecao: p, linha: null } : p;
+      if (e && oddDe(e, pp)) S.picks[id] = pp;
+    }
+  }
+}
+function iniciarAutoRefresh() {
+  if (S.timer) clearInterval(S.timer);
+  S.timer = setInterval(async () => {
+    if (S.view !== "acompanhar" || document.hidden) return;
+    try { const r = await S.be.bilhetesPorCodigos([S.cupomCodigo]); if (r[0]) { S.cupom = r[0]; render(); } } catch (e) {}
+  }, 60000);
+}
 async function iniciar() {
   try {
-    if (S.token) {
-      S.amigo = await S.be.apostadorInfo(S.token);
-      if (!S.amigo) { S.view = "linkInvalido"; return render(); }
-      try { S.picks = JSON.parse(localStorage.getItem("zs_picks_" + S.token)) || {}; } catch (e) { S.picks = {}; }
-      S.eventos = await S.be.eventos();
-      S.picks = Object.fromEntries(Object.entries(S.picks).filter(([id]) => S.eventos.some((e) => e.id === id)));
-      S.view = "amigo"; S.abaAmigo = "jogos"; return render();
+    if (S.cupomCodigo) {
+      S.cupom = (await S.be.bilhetesPorCodigos([S.cupomCodigo]))[0] || null;
+      S.view = "acompanhar"; iniciarAutoRefresh(); return render();
     }
     S.perfil = await S.be.sessao();
-    if (S.perfil) {
-      S.view = "staff"; S.abaStaff = "validar";
-      if (S.codigoPendente) { S.codigoBusca = S.codigoPendente; await buscarBilhete(); }
-      return render();
+    if (S.codigoPendente) {
+      if (S.perfil) { S.view = "staff"; S.abaStaff = "validar"; S.codigoBusca = S.codigoPendente; await buscarBilhete(); return render(); }
+      S.view = "login"; return render();
     }
-    S.view = S.codigoPendente ? "login" : "home"; render();
-  } catch (e) { toast(msgErro(e), "erro"); S.view = "home"; render(); }
+    await carregarJogos(); S.view = "jogos"; S.aba = "jogos"; render();
+  } catch (e) { toast(msgErro(e), "erro"); S.view = "jogos"; render(); }
 }
 
 /* ----------------------------- render ----------------------------- */
 function render() {
   const v = S.view;
   if (v === "gate") app.innerHTML = viewGate();
-  else if (v === "home") app.innerHTML = viewHome();
   else if (v === "login") app.innerHTML = viewLogin();
-  else if (v === "linkInvalido") app.innerHTML = pageHtml(`<div class="top">${logoHtml}</div><div class="card"><h2>Link inválido</h2><p class="mut">Esse link não existe ou foi desativado. Peça um novo link pessoal ao seu supervisor.</p></div>`);
-  else if (v === "amigo") app.innerHTML = viewAmigo();
+  else if (v === "jogos") app.innerHTML = viewJogos();
   else if (v === "bilheteGerado") app.innerHTML = viewBilheteGerado();
   else if (v === "staff") app.innerHTML = viewStaff();
+  else if (v === "acompanhar") app.innerHTML = viewAcompanhar();
   else app.innerHTML = pageHtml(`<div class="vazio">Carregando…</div>`);
-  const chave = v + "|" + (v === "amigo" ? S.abaAmigo : v === "staff" ? S.abaStaff : "");
+  const chave = v + "|" + (v === "jogos" ? S.aba : v === "staff" ? S.abaStaff : "");
   if (chave !== S.chave) { S.chave = chave; window.scrollTo(0, 0); }
-  if (v === "amigo") { if (S.abaAmigo === "jogos") { drawChips(); drawLista(); } drawBarra(); }
+  if (v === "jogos") { if (S.aba === "jogos") { drawChips(); drawLista(); } drawBarra(); }
 }
 
 function viewGate() {
   return `<div class="gate"><div class="card">
     <h1>ZS<span style="color:var(--txt)">GREEN</span></h1>
-    <p style="font-weight:700;font-size:18px;margin:14px 0 6px">Conteúdo para maiores de 18 anos</p>
+    <p style="font-weight:800;font-size:18px;margin:14px 0 6px">Conteúdo para maiores de 18 anos</p>
     <p class="mut">Aqui você monta bilhetes de palpites entre amigos. Não há pagamentos nem prêmios dentro do site.</p>
     <div class="btns" style="margin-top:18px;flex-direction:column">
       <button class="btn p" data-act="aceitar-18">Tenho 18 anos ou mais</button>
       <button class="btn g" data-act="recusar-18">Sou menor de idade</button>
     </div></div></div>`;
 }
-
-function heroSvg() {
-  return `<svg viewBox="0 0 240 210" xmlns="http://www.w3.org/2000/svg">
-    <defs><radialGradient id="gl" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#27E36F" stop-opacity=".35"/><stop offset="1" stop-color="#27E36F" stop-opacity="0"/></radialGradient></defs>
-    <circle cx="120" cy="105" r="100" fill="url(#gl)"/>
-    <g transform="rotate(-5 120 105)">
-      <rect x="48" y="22" width="144" height="166" rx="16" fill="#0F2016" stroke="#27E36F" stroke-opacity=".6" stroke-width="1.5"/>
-      <circle cx="48" cy="62" r="9" fill="#06100A"/><circle cx="192" cy="62" r="9" fill="#06100A"/>
-      <line x1="62" y1="62" x2="178" y2="62" stroke="#27E36F" stroke-opacity=".4" stroke-dasharray="4 5"/>
-      <text x="64" y="47" fill="#27E36F" font-size="13" font-weight="800" font-family="Plus Jakarta Sans,sans-serif" letter-spacing="1">ZSGREEN</text>
-      <g class="ck"><circle cx="70" cy="86" r="8" fill="#27E36F"/><path d="M66 86l3 3 5-6" stroke="#06100A" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
-      <rect x="86" y="80" width="62" height="5" rx="2.5" fill="#EAF7EF" fill-opacity=".8"/><rect x="86" y="89" width="38" height="4" rx="2" fill="#8CAA97" fill-opacity=".6"/><rect x="156" y="80" width="22" height="6" rx="3" fill="#27E36F"/>
-      <g class="ck ck2"><circle cx="70" cy="114" r="8" fill="#27E36F"/><path d="M66 114l3 3 5-6" stroke="#06100A" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
-      <rect x="86" y="108" width="54" height="5" rx="2.5" fill="#EAF7EF" fill-opacity=".8"/><rect x="86" y="117" width="44" height="4" rx="2" fill="#8CAA97" fill-opacity=".6"/><rect x="156" y="108" width="22" height="6" rx="3" fill="#27E36F"/>
-      <g class="ck ck3"><circle cx="70" cy="142" r="8" fill="#27E36F"/><path d="M66 142l3 3 5-6" stroke="#06100A" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
-      <rect x="86" y="136" width="66" height="5" rx="2.5" fill="#EAF7EF" fill-opacity=".8"/><rect x="86" y="145" width="34" height="4" rx="2" fill="#8CAA97" fill-opacity=".6"/><rect x="156" y="136" width="22" height="6" rx="3" fill="#27E36F"/>
-      <line x1="62" y1="160" x2="178" y2="160" stroke="#27E36F" stroke-opacity=".4" stroke-dasharray="4 5"/>
-      <text x="64" y="178" fill="#8CAA97" font-size="10" font-weight="700" font-family="Plus Jakarta Sans,sans-serif">ODD TOTAL</text>
-      <text x="178" y="179" fill="#27E36F" font-size="17" font-weight="800" text-anchor="end" font-family="Plus Jakarta Sans,sans-serif">12.40</text>
-    </g></svg>`;
-}
-
-function viewHome() {
-  const demo = MODO_DEMO ? `<div class="card"><h3>Para testar a demonstração</h3>
-    <p class="mut sm" style="margin:0 0 8px"><b>Supervisor:</b> <span class="tip">super@zsgreen.demo</span> <span class="tip">super123</span></p>
-    <p class="mut sm" style="margin:0 0 8px"><b>Admin:</b> <span class="tip">admin@zsgreen.demo</span> <span class="tip">admin123</span></p>
-    <p class="mut sm" style="margin:0 0 12px"><b>Amigo:</b> abra o <a href="?a=demo-amigo">link pessoal de exemplo</a></p>
-    <button class="btn g xs" data-act="resetar-demo">Zerar dados da demonstração</button></div>` : "";
-  return pageHtml(`<div class="top">${logoHtml}<span></span></div>
-    <div class="hero">${heroSvg()}
-      <h1>Monte seu bilhete.<br><em>Valide e pronto.</em></h1>
-      <p>Escolha os jogos, gere o bilhete e mande no WhatsApp para o seu supervisor validar.</p>
-      <button class="btn p" data-act="entrar-staff">Entrar como supervisor</button>
-      <p class="mut sm" style="margin-top:14px">Tem um link pessoal? Abra o link que seu supervisor te enviou.</p>
-    </div>${demo}`);
-}
-
 function viewLogin() {
   const aviso = S.codigoPendente ? `<div class="aviso">Entre para validar o bilhete <b>${esc(S.codigoPendente)}</b>.</div>` : "";
-  return pageHtml(`<div class="top">${logoHtml}<button class="btn g xs" data-act="voltar-home">Voltar</button></div>
-    <div class="card"><h2>Entrar</h2>${aviso}
+  const demo = MODO_DEMO ? `<p class="mut sm" style="margin:12px 0 0">Demonstração — supervisor: <span class="tip">super@zsgreen.demo</span> <span class="tip">super123</span><br>admin: <span class="tip">admin@zsgreen.demo</span> <span class="tip">admin123</span></p>
+    <button class="btn g xs" style="margin-top:10px" data-act="resetar-demo">Zerar dados da demonstração</button>` : "";
+  return pageHtml(`${topo(`<button class="btn g xs" data-act="ir-jogos">Ver jogos</button>`)}
+    <div class="card"><h2>Entrar (supervisor)</h2>${aviso}
     <form data-form="login" autocomplete="on">
       <label for="lg-email">E-mail</label><input id="lg-email" type="email" autocomplete="username" placeholder="seu@email.com" required>
       <label for="lg-senha">Senha</label><input id="lg-senha" type="password" autocomplete="current-password" placeholder="••••••" required>
       <button class="btn p" style="margin-top:16px" type="submit">Entrar</button>
-    </form></div>`);
+    </form>${demo}</div>`);
 }
 
-/* ------------------------------ AMIGO ------------------------------ */
-function viewAmigo() {
-  const a = S.amigo;
-  const tabs = `<div class="tabs"><button class="tab ${S.abaAmigo === "jogos" ? "on" : ""}" data-act="tab-amigo" data-tab="jogos">Jogos</button>
-    <button class="tab ${S.abaAmigo === "meus" ? "on" : ""}" data-act="tab-amigo" data-tab="meus">Meus bilhetes</button></div>`;
-  const corpo = S.abaAmigo === "jogos"
-    ? `<div class="filtros"><input type="search" id="busca" placeholder="Buscar time ou lutador…" value="${esc(S.busca)}"><div class="chips" id="chips"></div></div><div id="lista"></div>`
+/* ------------------------------ JOGOS (público) ------------------------------ */
+function viewJogos() {
+  const extra = `<button class="btn g xs" data-act="${S.perfil ? "ir-painel" : "entrar-staff"}">${S.perfil ? "Painel" : "Supervisor"}</button>`;
+  const tabs = `<div class="tabs"><button class="tab ${S.aba === "jogos" ? "on" : ""}" data-act="tab-jogos" data-tab="jogos">Jogos</button>
+    <button class="tab ${S.aba === "meus" ? "on" : ""}" data-act="tab-jogos" data-tab="meus">Meus bilhetes</button></div>`;
+  const corpo = S.aba === "jogos"
+    ? `<div class="filtros"><input type="search" id="busca" placeholder="Buscar time, lutador ou liga…" value="${esc(S.busca)}"><div class="chips" id="chips"></div></div><div id="lista"></div>`
     : htmlMeusBilhetes();
-  return pageHtml(`<div class="top">${logoHtml}<div class="hello">Olá,<strong>${esc(a.apelido)}</strong></div></div>${tabs}${corpo}`) + `<div id="barra"></div><div id="sheet"></div>`;
+  return pageHtml(topo(extra) + tabs + corpo) + `<div id="barra"></div><div id="sheet"></div>`;
 }
-
-function esportesDisponiveis() { return ["Todos", ...new Set(S.eventos.map((e) => e.esporte_nome).filter(Boolean))]; }
+function filtrosDisponiveis() { return ["Todos", "Hoje", ...new Set(S.eventos.map((e) => e.esporte_nome).filter(Boolean))]; }
 function drawChips() {
   const el = $("#chips"); if (!el) return;
-  el.innerHTML = esportesDisponiveis().map((e) => `<button class="chip ${S.esporte === e ? "on" : ""}" data-act="chip" data-esp="${esc(e)}">${e === "Todos" ? "" : emoji(e) + " "}${esc(e)}</button>`).join("");
+  el.innerHTML = filtrosDisponiveis().map((e) => `<button class="chip ${S.esporte === e ? "on" : ""}" data-act="chip" data-esp="${esc(e)}">${EMOJI[e] ? EMOJI[e] + " " : ""}${esc(e)}</button>`).join("");
+}
+function oddBtn(e, mercado, selecao, linha, rot, odd, off) {
+  const on = pickIgual(S.picks[e.id], { mercado, selecao, linha });
+  const l = linha !== null && linha !== undefined ? ` data-l="${linha}"` : "";
+  return `<button class="odd ${on ? "on" : ""}" ${off ? "disabled" : ""} data-act="pick" data-ev="${esc(e.id)}" data-m="${mercado}" data-sel="${selecao}"${l}><small>${esc(rot)}</small><b>${fmtOdd(odd)}</b></button>`;
+}
+function extrasHtml(e, off) {
+  const un = unidade(e.esporte_nome);
+  let h = '<div class="extras">';
+  for (const t of (e.extras || {}).totals || [])
+    h += `<div class="xr"><span class="xl">Total ${un} ${t.linha}</span><div class="xo">${oddBtn(e, "totals", "mais", t.linha, "Mais", t.mais, off)}${oddBtn(e, "totals", "menos", t.linha, "Menos", t.menos, off)}</div></div>`;
+  for (const s of (e.extras || {}).spreads || [])
+    h += `<div class="xr"><span class="xl">Handicap</span><div class="xo">${oddBtn(e, "spreads", "casa", s.linha, `${abrev(e.casa)} ${sinal(s.linha)}`, s.casa, off)}${oddBtn(e, "spreads", "fora", s.linha, `${abrev(e.fora)} ${sinal(-s.linha)}`, s.fora, off)}</div></div>`;
+  return h + "</div>";
+}
+function linhaEvento(e, vert) {
+  const off = new Date(e.inicio).getTime() < Date.now() + 5 * 60e3;
+  const h2 = e.odds.empate ? [["casa", "1"], ["empate", "X"], ["fora", "2"]] : [["casa", "1"], ["fora", "2"]];
+  const ex = e.extras || {};
+  const nExtras = (ex.totals || []).length + (ex.spreads || []).length;
+  const temExtras = nExtras > 0;
+  const aberto = !!S.abertos[e.id];
+  return `<div class="ev ${e.destaque ? "dest" : ""} ${vert ? "vert" : ""}">
+    <div class="ev-info"><div class="ev-meta"><span class="lg">${emoji(e.esporte_nome)} ${esc(e.liga || "")}</span><b>${off ? "Encerrado" : (vert ? fmtDia(e.inicio) + " " : "") + fmtHora(e.inicio)}</b>${temExtras ? `<button class="mais" data-act="toggle-extras" data-ev="${esc(e.id)}" title="Mais mercados (mais/menos gols, handicap)">${aberto ? "−" + nExtras + " ▴" : "+" + nExtras + " ▾"}</button>` : ""}</div>
+      <div class="ev-t">${esc(e.casa)}</div><div class="ev-t">${esc(e.fora)}</div></div>
+    <div class="odds">${h2.map(([s, r]) => oddBtn(e, "h2h", s, null, r, e.odds[s], off)).join("")}</div>
+    ${aberto ? extrasHtml(e, off) : ""}</div>`;
+}
+function bannersHtml() {
+  const ativos = S.banners.filter((b) => b.ativo);
+  if (!ativos.length) return "";
+  return `<div class="hscroll">${ativos.map((b) => `<div class="bn ${esc(b.cor)}"><b>${esc(b.titulo)}</b><span>${esc(b.texto || "")}</span></div>`).join("")}</div>`;
 }
 function drawLista() {
   const el = $("#lista"); if (!el) return;
-  const termo = S.busca.trim().toLowerCase();
-  const lista = S.eventos.filter((e) => (S.esporte === "Todos" || e.esporte_nome === S.esporte) &&
-    (!termo || `${e.casa} ${e.fora} ${e.liga}`.toLowerCase().includes(termo)));
-  if (!lista.length) { el.innerHTML = `<div class="vazio">Nenhum jogo encontrado.<br><span class="sm">Se a lista estiver vazia, o admin ainda precisa atualizar os jogos.</span></div>`; return; }
-  let html = "", dia = "";
-  const limite = Date.now() + 5 * 60e3;
+  const termo = norm(S.busca), hoje = new Date().toDateString();
+  const passa = (e) => (S.esporte === "Todos" || (S.esporte === "Hoje" ? new Date(e.inicio).toDateString() === hoje : e.esporte_nome === S.esporte)) &&
+    (!termo || norm(`${e.casa} ${e.fora} ${e.liga}`).includes(termo));
+  const lista = S.eventos.filter(passa);
+  let html = "";
+  if (S.esporte === "Todos" && !termo) {
+    html += bannersHtml();
+    const dest = S.eventos.filter((e) => e.destaque && new Date(e.inicio).getTime() > Date.now() + 5 * 60e3).slice(0, 8);
+    if (dest.length) html += `<div class="sec-t">⭐ Em destaque</div><div class="hscroll">${dest.map((e) => linhaEvento(e, true)).join("")}</div><div class="sec-t" style="margin-top:10px">Todos os jogos</div>`;
+  }
+  if (!lista.length) html += `<div class="vazio">Nenhum jogo encontrado.<br><span class="sm">Se a lista estiver vazia, o admin ainda precisa atualizar os jogos.</span></div>`;
+  let dia = "";
   for (const e of lista) {
     const d = fmtDia(e.inicio);
     if (d !== dia) { dia = d; html += `<div class="dia">${esc(d)}</div>`; }
-    const off = new Date(e.inicio).getTime() < limite;
-    const sels = e.odds.empate ? [["casa", "1"], ["empate", "X"], ["fora", "2"]] : [["casa", e.casa], ["fora", e.fora]];
-    html += `<div class="ev"><div class="ev-top"><span class="lg">${emoji(e.esporte_nome)} ${esc(e.liga || "")}</span><span class="hr">${off ? "Encerrado" : fmtHora(e.inicio)}</span></div>
-      <div class="ev-t">${esc(e.casa)}<span>x</span>${esc(e.fora)}</div>
-      <div class="odds ${sels.length === 3 ? "n3" : "n2"}">${sels.map(([s, r]) =>
-        `<button class="odd ${S.picks[e.id] === s ? "on" : ""}" ${off ? "disabled" : ""} data-act="pick" data-ev="${esc(e.id)}" data-sel="${s}"><small>${esc(r)}</small><b>${fmtOdd(e.odds[s])}</b></button>`).join("")}</div></div>`;
+    html += linhaEvento(e, false);
   }
   el.innerHTML = html;
 }
 function oddTotalPicks() {
   let t = 1;
-  for (const [id, sel] of Object.entries(S.picks)) { const e = S.eventos.find((x) => x.id === id); if (e) t *= e.odds[sel]; }
+  for (const [id, p] of Object.entries(S.picks)) { const o = oddDe(S.eventos.find((x) => x.id === id), p); if (o) t *= o; }
   return Math.round(t * 100) / 100;
 }
 function drawBarra() {
   const el = $("#barra"); if (!el) return;
   const n = Object.keys(S.picks).length;
-  if (!n || S.abaAmigo !== "jogos") { el.innerHTML = ""; return; }
+  if (!n || S.aba !== "jogos") { el.innerHTML = ""; return; }
   el.innerHTML = `<div class="barra"><div class="in" data-act="abrir-sheet"><div><span>${n} ${n === 1 ? "jogo" : "jogos"} no bilhete</span>Ver bilhete</div><b>${fmtOdd(oddTotalPicks())}</b></div></div>`;
 }
 function drawSheet() {
   const el = $("#sheet"); if (!el) return;
   if (!S.sheet) { el.innerHTML = ""; return; }
-  const itens = Object.entries(S.picks).map(([id, sel]) => ({ e: S.eventos.find((x) => x.id === id), sel })).filter((x) => x.e);
+  const itens = Object.entries(S.picks).map(([id, p]) => ({ e: S.eventos.find((x) => x.id === id), p })).filter((x) => x.e);
   el.innerHTML = `<div class="sheet-bg" data-act="fechar-sheet-bg"><div class="sheet">
     <div class="row sp"><h3 style="margin:0">Meu bilhete</h3><button class="btn g xs" data-act="fechar-sheet">Fechar</button></div>
-    ${itens.map(({ e, sel }) => `<div class="pk"><div class="grow"><div class="sm mut">${emoji(e.esporte_nome)} ${esc(e.liga || "")} · ${fmtDataHora(e.inicio)}</div>
+    ${itens.map(({ e, p }) => `<div class="pk"><div class="grow"><div class="sm mut">${emoji(e.esporte_nome)} ${esc(e.liga || "")} · ${fmtDataHora(e.inicio)}</div>
       <div style="font-weight:700">${esc(e.casa)} x ${esc(e.fora)}</div>
-      <div class="sm" style="color:var(--g)">➜ ${esc(rotulo({ selecao: sel, casa: e.casa, fora: e.fora }))}</div></div>
-      <div class="o">${fmtOdd(e.odds[sel])}</div><button class="x" data-act="rm-pick" data-ev="${esc(e.id)}">✕</button></div>`).join("")}
+      <div class="sm" style="color:var(--gt);font-weight:700">➜ ${esc(rotuloPick(e, p))}</div></div>
+      <div class="o">${fmtOdd(oddDe(e, p))}</div><button class="x" data-act="rm-pick" data-ev="${esc(e.id)}">✕</button></div>`).join("")}
     <div class="tot"><span class="mut">Odd total</span><b>${fmtOdd(oddTotalPicks())}</b></div>
-    <div class="aviso">O bilhete só vale depois que um supervisor validar. Isso precisa acontecer antes do primeiro jogo começar.</div>
+    <label for="ap-inf">Seu apelido</label>
+    <input id="ap-inf" type="text" maxlength="30" value="${esc(S.apelido)}" placeholder="Como o supervisor te conhece" autocomplete="off">
+    <div class="aviso">O bilhete só vale depois que um supervisor validar, antes do primeiro jogo começar.</div>
     <div class="btns"><button class="btn g" data-act="limpar-picks">Limpar</button><button class="btn p" data-act="gerar-bilhete" style="flex:2">Gerar bilhete</button></div>
   </div></div>`;
 }
-function salvarPicks() { try { localStorage.setItem("zs_picks_" + S.token, JSON.stringify(S.picks)); } catch (e) {} }
+function salvarPicks() { try { localStorage.setItem("zs_picks", JSON.stringify(S.picks)); } catch (e) {} }
 
-function htmlBilhete(b, { staff = false, acoes = "" } = {}) {
-  const st = { pendente: "Pendente", validado: "Validado", recusado: "Recusado" }[b.status];
-  const meta = staff
-    ? `<div class="tk-m">Apostador: <strong>${esc(b.apostador.apelido)}</strong> (${esc(b.apostador.nome)}) · Supervisor: <strong>${esc(b.supervisor_nome)}</strong></div>` : "";
+function htmlBilhete(b, { staff = false, acoes = "", extra = "" } = {}) {
+  const sit = situacaoBilhete(b);
+  let meta = "";
+  if (staff) {
+    const ap = b.apostador ? ` · Apostador: <strong>${esc(b.apostador.apelido)}</strong> (${esc(b.apostador.nome)})` : "";
+    meta = `<div class="tk-m">Enviado por: <strong>${esc(b.apelido_informado || "—")}</strong>${ap}</div>`;
+  }
   const val = b.validado_por_nome ? `<div class="tk-m">${b.status === "recusado" ? "Recusado" : "Validado"} por <strong>${esc(b.validado_por_nome)}</strong> em ${fmtDataHora(b.validado_em)}</div>` : "";
-  return `<div class="tk"><div class="tk-h"><div class="code">${esc(b.codigo)}</div><span class="badge st-${b.status}">${st}</span></div>${meta}
+  return `<div class="tk"><div class="tk-h"><div class="code">${esc(b.codigo)}</div><span class="badge st-${sit}">${SIT[sit]}</span></div>${meta}
     <div class="tk-b">${b.itens.map((i) => `<div class="it"><div class="lg">${emoji(i.esporte_nome)} ${esc(i.liga || "")} · ${fmtDataHora(i.inicio)}</div>
-      <div class="jg">${esc(i.casa)} x ${esc(i.fora)}</div><div class="pl"><span>➜ ${esc(rotulo(i))}</span><span>${fmtOdd(i.odd)}</span></div></div>`).join("")}</div>
-    ${val}<div class="tk-f"><span class="mut">Odd total</span><b>${fmtOdd(b.odd_total)}</b></div>${acoes ? `<div style="padding:12px 16px" class="btns">${acoes}</div>` : ""}</div>`;
+      <div class="jg">${esc(i.casa)} x ${esc(i.fora)}</div><div class="pl"><span>➜ ${esc(rotuloMercado(i))}${i.resultado && i.resultado !== "pendente" ? ` <span class="badge st-${RES[i.resultado][1]}" style="margin-left:6px">${RES[i.resultado][0]}</span>` : ""}</span><span>${fmtOdd(i.odd)}</span></div></div>`).join("")}</div>
+    ${val}<div class="tk-f"><span class="mut">Odd total</span><b>${fmtOdd(b.odd_total)}</b></div>${extra}${acoes ? `<div style="padding:12px 15px" class="btns">${acoes}</div>` : ""}</div>`;
+}
+function htmlCupom(b, { acoes = "" } = {}) {
+  const sit = situacaoBilhete(b);
+  const dupla = (i) => i.esporte_nome === "MMA" || i.esporte_nome === "Tênis";
+  const itens = b.itens.map((i) => {
+    const r = RES[i.resultado || "pendente"];
+    let pl = "";
+    if (i.placar && !i.placar.anulado) pl = `<div class="cp-row"><span class="cp-k">${dupla(i) ? "Vencedor" : "Placar final"}</span><span>${dupla(i) ? esc(i.placar.casa > i.placar.fora ? i.casa : i.fora) : `${i.placar.casa} x ${i.placar.fora}`}</span></div>`;
+    return `<div class="cp-it"><div class="cp-b">${emoji(i.esporte_nome)} ${esc(i.esporte_nome || "")} · ${fmtDataCompleta(i.inicio)}</div>
+      <div class="cp-liga">${esc(i.liga || "")}</div><div class="cp-jogo">${esc(i.casa)} x ${esc(i.fora)}</div>
+      <div class="cp-b">${esc(nomeMercado(i))}</div>
+      <div class="cp-row"><span>${esc(rotuloMercado(i))}</span><span class="cp-b">${fmtOdd(i.odd)}</span></div>${pl}
+      <div class="cp-row"><span class="cp-k">Situação</span><span class="${r[2]}">${r[0]}</span></div></div><hr class="cp-sep">`;
+  }).join("");
+  const ajustada = b.itens.some((i) => i.resultado === "anulado") && sit !== "anulado"
+    ? b.itens.filter((i) => i.resultado !== "anulado").reduce((t, i) => t * Number(i.odd), 1) : null;
+  return `<div class="cupom"><div class="cp-t">ZSGREEN</div><div class="cp-sub">cupom de acompanhamento</div><hr class="cp-sep">
+    <div class="cp-row"><span class="cp-k">Data</span><span>${fmtDataCompleta(b.criado_em)}</span></div>
+    <div class="cp-row"><span class="cp-k">Jogador</span><span class="cp-b">${esc(jogador(b))}</span></div>
+    ${b.validado_por_nome ? `<div class="cp-row"><span class="cp-k">${b.status === "recusado" ? "Recusado por" : "Supervisor"}</span><span>${esc(b.validado_por_nome)}</span></div>` : ""}
+    <hr class="cp-sep"><div class="cp-row cp-b"><span>JOGO</span><span>COTAÇÃO</span></div>${itens}
+    <div class="cp-row"><span class="cp-k">Quantidade de jogos</span><span>${b.itens.length}</span></div>
+    <div class="cp-row"><span class="cp-k">Cotação total</span><span class="cp-b">${fmtOdd(b.odd_total)}</span></div>
+    ${ajustada ? `<div class="cp-row"><span class="cp-k">Cotação ajustada (jogos anulados)</span><span class="cp-b">${fmtOdd(ajustada)}</span></div>` : ""}
+    <hr class="cp-sep"><div class="cp-cap">BILHETE</div><div class="cp-code">${esc(b.codigo)}</div>
+    <div class="cp-stamp st-${sit}">${SIT[sit]}</div>
+    <div class="cp-foot">ZSGREEN é um gerador de bilhetes entre amigos. Não processa pagamentos nem paga prêmios. Proibido para menores de 18 anos.</div>
+    ${acoes ? `<div class="btns" style="margin-top:12px">${acoes}</div>` : ""}</div>`;
+}
+const acoesCupom = (b) => b.status === "pendente"
+  ? `<button class="btn p" data-act="wa-bilhete" data-cod="${esc(b.codigo)}">Enviar para validação</button>`
+  : `<button class="btn p" data-act="wa-cupom" data-cod="${esc(b.codigo)}">Compartilhar no WhatsApp</button><button class="btn s" data-act="copiar-link-cupom" data-cod="${esc(b.codigo)}">Copiar link</button>`;
+function viewAcompanhar() {
+  const b = S.cupom;
+  const corpo = b
+    ? htmlCupom(b, { acoes: `<button class="btn p" data-act="atualizar-cupom">Atualizar status</button><button class="btn s" data-act="wa-cupom" data-cod="${esc(b.codigo)}">Compartilhar no WhatsApp</button>` }) + `<p class="mut sm" style="text-align:center">O status se atualiza sozinho a cada minuto.</p>`
+    : `<div class="card"><h3>Bilhete não encontrado</h3><p class="mut">Confira o link ou o código do bilhete.</p></div>`;
+  return pageHtml(`${topo(`<button class="btn g xs" data-act="ir-jogos">Ver jogos</button>`)}${corpo}`);
 }
 function htmlMeusBilhetes() {
-  if (!S.bilhetesAmigo.length) return `<div class="vazio">Você ainda não gerou nenhum bilhete.</div>`;
-  return S.bilhetesAmigo.map((b) => htmlBilhete(b, { acoes: b.status === "pendente" ? `<button class="btn p" data-act="wa-bilhete" data-cod="${esc(b.codigo)}">Enviar para validação</button>` : "" })).join("");
+  if (!S.bilhetes.length) return `<div class="vazio">Você ainda não gerou nenhum bilhete neste aparelho.</div>`;
+  return `<p class="mut sm" style="margin:0 0 8px">Os cupons mostram o status em tempo real (em andamento, ganhou ou perdeu) quando o supervisor lança os placares.</p>` + S.bilhetes.map((b) => htmlCupom(b, { acoes: acoesCupom(b) })).join("");
 }
 function viewBilheteGerado() {
   const b = S.ultimo;
-  return pageHtml(`<div class="top">${logoHtml}<span></span></div>
-    <div class="big"><div class="mut">Bilhete gerado</div><div class="code">${esc(b.codigo)}</div><span class="badge st-pendente">Aguardando validação</span></div>
-    <div class="aviso">Falta só um passo: envie o bilhete para um supervisor validar <b>antes do primeiro jogo começar</b>.</div>
-    <div class="btns" style="flex-direction:column;margin-bottom:14px">
+  return pageHtml(`${topo()}
+    <div class="aviso">Bilhete gerado! Falta só um passo: envie o bilhete para um supervisor validar <b>antes do primeiro jogo começar</b>.</div>
+    <div class="btns" style="flex-direction:column;margin-bottom:12px">
       <button class="btn p" data-act="wa-bilhete" data-cod="${esc(b.codigo)}">Enviar no WhatsApp</button>
       <button class="btn s" data-act="copiar-bilhete" data-cod="${esc(b.codigo)}">Copiar texto do bilhete</button></div>
-    ${htmlBilhete(b)}
+    ${htmlCupom(b)}
     <button class="btn g" data-act="voltar-jogos">Voltar aos jogos</button>`);
 }
 
 /* ------------------------------ STAFF ------------------------------ */
 function viewStaff() {
   const adm = S.perfil.role === "admin";
-  const abas = [["validar", "Validar"], ["apostadores", "Apostadores"], ["bilhetes", "Bilhetes"]];
-  if (adm) abas.push(["supervisores", "Supervisores"], ["todos", "Todos os bilhetes"], ["jogos", "Jogos"]);
+  const abas = [["validar", "Validar"], ["resultados", "Resultados"], ["apostadores", "Apostadores"], ["bilhetes", "Bilhetes"]];
+  if (adm) abas.push(["supervisores", "Supervisores"], ["todos", "Todos os bilhetes"], ["jogos", "Jogos"], ["avisos", "Avisos"]);
   const tabs = `<div class="tabs">${abas.map(([k, n]) => `<button class="tab ${S.abaStaff === k ? "on" : ""}" data-act="tab-staff" data-tab="${k}">${n}</button>`).join("")}</div>`;
-  const fn = { validar: stValidar, apostadores: stApostadores, bilhetes: stBilhetes, supervisores: stSupervisores, todos: stTodos, jogos: stJogos }[S.abaStaff];
-  return pageHtml(`<div class="top">${logoHtml}<div class="row"><div class="hello"><strong>${esc(S.perfil.nome)}</strong>${adm ? "Admin" : "Supervisor"}</div><button class="btn g xs" data-act="sair">Sair</button></div></div>${tabs}${fn()}`);
+  const fn = { validar: stValidar, resultados: stResultados, apostadores: stApostadores, bilhetes: stBilhetes, supervisores: stSupervisores, todos: stTodos, jogos: stJogos, avisos: stAvisos }[S.abaStaff];
+  const extra = `<button class="btn g xs" data-act="ir-jogos">Jogos</button><button class="btn g xs" data-act="sair">Sair</button>`;
+  const quem = `<div class="mut sm" style="margin:-2px 0 8px">Logado como <b style="color:var(--txt)">${esc(S.perfil.nome)}</b> · ${adm ? "Admin" : "Supervisor"}</div>`;
+  return pageHtml(topo(extra) + quem + tabs + fn());
+}
+function seletorApostador(b) {
+  const ativos = S.apostadores.filter((a) => a.ativo);
+  const auto = (ativos.find((a) => norm(a.apelido) === norm(b.apelido_informado)) || {}).id || "";
+  const pre = S.selAp || auto;
+  const opts = ativos.map((a) => `<option value="${esc(a.id)}" ${a.id === pre ? "selected" : ""}>${esc(a.apelido)} — ${esc(a.nome)}</option>`).join("");
+  return `<div style="padding:12px 15px;border-top:1px solid var(--line)">
+    <label for="sel-ap">Validar para qual apostador?</label>
+    <select id="sel-ap"><option value="">Escolha…</option>${opts}<option value="__novo__" ${pre === "__novo__" ? "selected" : ""}>➕ Novo apostador…</option></select>
+    <div class="novoap" id="novo-ap" style="display:${pre === "__novo__" ? "block" : "none"}">
+      <input id="na-nome" type="text" placeholder="Nome completo" style="margin-bottom:8px">
+      <input id="na-apelido" type="text" placeholder="Apelido" value="${esc(b.apelido_informado || "")}" style="margin-bottom:8px">
+      <input id="na-tel" type="text" inputmode="tel" placeholder="WhatsApp do jogador (opcional)">
+    </div></div>`;
 }
 function stValidar() {
   let res = "";
   if (S.bilheteAberto) {
     const b = S.bilheteAberto;
-    let acoes = "";
-    if (b.status === "pendente" && b.pode_validar) acoes = `<button class="btn d" data-act="recusar" data-cod="${esc(b.codigo)}">Recusar</button><button class="btn p" style="flex:2" data-act="validar" data-cod="${esc(b.codigo)}">Validar bilhete</button>`;
-    else if (b.status === "validado") acoes = `<button class="btn s" data-act="wa-comprovante" data-cod="${esc(b.codigo)}">Enviar comprovante no WhatsApp</button>`;
+    let acoes = "", extra = "";
+    if (b.status === "pendente" && b.pode_validar) {
+      extra = seletorApostador(b);
+      acoes = `<button class="btn d" data-act="recusar" data-cod="${esc(b.codigo)}">Recusar</button><button class="btn p" style="flex:2" data-act="validar" data-cod="${esc(b.codigo)}">Validar bilhete</button>`;
+    } else if (b.status === "validado") {
+      const ap = S.apostadores.find((x) => x.id === b.apostador_id);
+      acoes = `<button class="btn p" data-act="wa-cupom-jogador" data-cod="${esc(b.codigo)}" data-tel="${esc((ap && ap.telefone) || "")}">Enviar cupom ao jogador</button><button class="btn s" data-act="copiar-link-cupom" data-cod="${esc(b.codigo)}">Copiar link do cupom</button>`;
+    }
     const aviso = b.status === "pendente" && !b.pode_validar ? `<div class="aviso">Prazo encerrado: o primeiro jogo desse bilhete já começou. Não dá mais para validar.</div>` : "";
-    res = aviso + htmlBilhete(b, { staff: true, acoes });
+    res = aviso + htmlBilhete(b, { staff: true, acoes, extra });
   } else if (S.buscou) res = `<div class="vazio">Bilhete não encontrado. Confira o código.</div>`;
   return `<div class="card"><h3>Validar bilhete</h3><form data-form="buscar"><div class="row">
     <input type="text" id="cod" class="grow" placeholder="ZS-XXXXXX" value="${esc(S.codigoBusca)}" autocapitalize="characters" autocomplete="off">
     <button class="btn p" style="width:auto" type="submit">Buscar</button></div></form>
-    <p class="mut sm" style="margin:10px 0 0">Ou toque no link que o apostador mandou no WhatsApp.</p></div>${res}`;
+    <p class="mut sm" style="margin:10px 0 0">Digite o código, toque no link que o apostador mandou no WhatsApp ou escolha na aba <b>Bilhetes</b>.</p></div>${res}`;
 }
-function linkAmigo(token) { return `${baseUrl()}?a=${token}`; }
+function cardResultado(j) {
+  const dupla = j.esporte_nome === "MMA" || j.esporte_nome === "Tênis";
+  const pl = j.placar, ev = esc(j.evento_id);
+  const cab = `<div class="mut sm">${emoji(j.esporte_nome)} ${esc(j.liga || "")} · ${fmtDataHora(j.inicio)} · ${j.qtd} ${j.qtd === 1 ? "palpite" : "palpites"}</div><div style="font-weight:800;margin:2px 0 8px">${esc(j.casa)} x ${esc(j.fora)}</div>`;
+  let info = "";
+  if (pl) info = pl.anulado ? `<div class="aviso" style="margin:0 0 8px">Jogo anulado (por ${esc(pl.por || "?")})</div>`
+    : `<div class="ok" style="margin:0 0 8px">${dupla ? "Vencedor: <b>" + esc(pl.casa > pl.fora ? j.casa : j.fora) + "</b>" : `Placar: <b>${pl.casa} x ${pl.fora}</b>`} (por ${esc(pl.por || "?")})</div>`;
+  const form = dupla
+    ? `<div class="btns"><button class="btn s xs" data-act="vencedor" data-ev="${ev}" data-w="casa">${esc(j.casa)} venceu</button><button class="btn s xs" data-act="vencedor" data-ev="${ev}" data-w="fora">${esc(j.fora)} venceu</button></div>`
+    : `<div class="row"><input class="pc-casa" type="number" inputmode="numeric" min="0" placeholder="${esc(abrev(j.casa))}" value="${pl && !pl.anulado ? pl.casa : ""}"><span>x</span><input class="pc-fora" type="number" inputmode="numeric" min="0" placeholder="${esc(abrev(j.fora))}" value="${pl && !pl.anulado ? pl.fora : ""}"><button class="btn p xs" data-act="salvar-placar" data-ev="${ev}">${pl ? "Corrigir" : "Salvar"}</button></div>`;
+  const extra = `<div class="btns" style="margin-top:8px"><button class="btn d xs" data-act="anular-jogo" data-ev="${ev}">Anular jogo</button>${pl ? `<button class="btn g xs" data-act="desfazer-placar" data-ev="${ev}">Desfazer placar</button>` : ""}</div>`;
+  return `<div class="card slim" data-card>${cab}${info}${form}${extra}</div>`;
+}
+function stResultados() {
+  const pend = S.jogosRes.filter((j) => !j.placar), feitos = S.jogosRes.filter((j) => j.placar);
+  return `<div class="card slim"><h3 style="margin:0 0 4px">Lançar resultados</h3><p class="mut sm" style="margin:0">Jogos que já começaram e têm bilhete validado. Ao salvar o placar, todos os bilhetes são atualizados na hora (ganhou, perdeu ou anulado).</p></div>
+    <div class="sec-t">Aguardando placar (${pend.length})</div>${pend.map(cardResultado).join("") || `<div class="vazio">Nenhum jogo aguardando resultado.</div>`}
+    ${feitos.length ? `<div class="sec-t" style="margin-top:14px">Já lançados (${feitos.length})</div>${feitos.map(cardResultado).join("")}` : ""}`;
+}
 function stApostadores() {
-  const lista = S.apostadores.map((a) => `<div class="card"><div class="row sp"><div class="grow"><div style="font-weight:800;font-size:16px">${esc(a.apelido)} ${a.ativo ? "" : '<span class="badge st-recusado">inativo</span>'}</div><div class="mut sm">${esc(a.nome)}</div></div></div>
-    <div class="btns" style="margin-top:12px"><button class="btn s xs" data-act="copiar-link" data-token="${esc(a.token)}">Copiar link</button>
-    <button class="btn p xs" data-act="wa-link" data-token="${esc(a.token)}" data-ap="${esc(a.apelido)}">Enviar no WhatsApp</button>
+  const lista = S.apostadores.map((a) => `<div class="card slim"><div class="row sp"><div class="grow"><div style="font-weight:800">${esc(a.apelido)} ${a.ativo ? "" : '<span class="badge st-recusado">inativo</span>'}</div><div class="mut sm">${esc(a.nome)}${a.telefone ? " · " + esc(a.telefone) : ""}</div></div>
     <button class="btn g xs" data-act="toggle-apostador" data-id="${esc(a.id)}" data-ativo="${a.ativo ? 1 : 0}">${a.ativo ? "Desativar" : "Ativar"}</button></div></div>`).join("");
-  return `<div class="card"><h3>Cadastrar apostador</h3><form data-form="apostador">
+  return `<div class="card"><h3>Cadastrar apostador</h3><p class="mut sm" style="margin:-4px 0 10px">Sua lista de amigos. Na hora de validar um bilhete, você escolhe um deles.</p><form data-form="apostador">
     <label for="ap-nome">Nome</label><input id="ap-nome" type="text" placeholder="Nome completo" required>
-    <label for="ap-apelido">Apelido</label><input id="ap-apelido" type="text" placeholder="Como aparece nos bilhetes" required>
-    <button class="btn p" style="margin-top:14px" type="submit">Cadastrar e gerar link</button></form></div>
+    <label for="ap-apelido">Apelido</label><input id="ap-apelido" type="text" placeholder="Como ele se identifica nos bilhetes" required>
+    <label for="ap-tel">WhatsApp (opcional)</label><input id="ap-tel" type="text" inputmode="tel" placeholder="11 99999-9999">
+    <button class="btn p" style="margin-top:14px" type="submit">Cadastrar</button></form></div>
     ${lista || `<div class="vazio">Nenhum apostador cadastrado ainda.</div>`}`;
 }
 function stBilhetes() {
   const fs = [["pendente", "Pendentes"], ["validado", "Validados"], ["recusado", "Recusados"], ["todos", "Todos"]];
   const lista = S.bilhetesStaff.filter((b) => S.filtroBil === "todos" || b.status === S.filtroBil);
   return `<div class="chips" style="padding-top:0">${fs.map(([k, n]) => `<button class="chip ${S.filtroBil === k ? "on" : ""}" data-act="filtro-bil" data-f="${k}">${n}</button>`).join("")}</div>
-    <p class="mut sm">Mostra os bilhetes que você validou e os pendentes dos seus apostadores.</p>
+    <p class="mut sm">Pendentes de todos que ainda dá para validar, mais os que você validou ou recusou.</p>
     ${lista.map((b) => resumoBilhete(b)).join("") || `<div class="vazio">Nada por aqui.</div>`}`;
 }
 function resumoBilhete(b) {
-  return `<div class="card" data-act="abrir-bilhete" data-cod="${esc(b.codigo)}" style="cursor:pointer"><div class="row sp"><div class="code" style="font-size:18px">${esc(b.codigo)}</div><span class="badge st-${b.status}">${b.status}</span></div>
-    <div class="mut sm" style="margin-top:6px">${esc(b.apostador.apelido)} · ${b.itens.length} ${b.itens.length === 1 ? "jogo" : "jogos"} · odd <b style="color:var(--g)">${fmtOdd(b.odd_total)}</b> · ${fmtDataHora(b.criado_em)}</div>
+  const quem = (b.apostador && b.apostador.apelido) || b.apelido_informado || "—";
+  return `<div class="card slim" data-act="abrir-bilhete" data-cod="${esc(b.codigo)}" style="cursor:pointer"><div class="row sp"><div class="code" style="font-size:17px">${esc(b.codigo)}</div><span class="badge st-${situacaoBilhete(b)}">${SIT[situacaoBilhete(b)]}</span></div>
+    <div class="mut sm" style="margin-top:5px">${esc(quem)} · ${b.itens.length} ${b.itens.length === 1 ? "jogo" : "jogos"} · odd <b style="color:var(--gt)">${fmtOdd(b.odd_total)}</b> · ${fmtDataHora(b.criado_em)}</div>
     ${b.validado_por_nome ? `<div class="mut sm">por ${esc(b.validado_por_nome)}</div>` : ""}</div>`;
 }
 function stSupervisores() {
-  const lista = S.supervisores.map((p) => `<div class="card"><div class="row sp"><div class="grow"><div style="font-weight:800">${esc(p.nome)} ${p.ativo ? "" : '<span class="badge st-recusado">inativo</span>'}</div>
+  const lista = S.supervisores.map((p) => `<div class="card slim"><div class="row sp"><div class="grow"><div style="font-weight:800">${esc(p.nome)} ${p.ativo ? "" : '<span class="badge st-recusado">inativo</span>'}</div>
     <div class="mut sm">${esc(p.email || "")}${p.telefone ? " · " + esc(p.telefone) : ""}</div></div>
     <button class="btn g xs" data-act="toggle-supervisor" data-id="${esc(p.id)}" data-ativo="${p.ativo ? 1 : 0}">${p.ativo ? "Desativar" : "Ativar"}</button></div></div>`).join("");
   return `<div class="card"><h3>Novo supervisor</h3><form data-form="supervisor">
@@ -758,23 +1012,41 @@ function stTodos() { return `<p class="mut sm">Todos os bilhetes, com o login de
 function stJogos() {
   const si = S.syncInfo;
   const bloco = si ? `<div class="${si.erro ? "aviso" : "ok"}">${esc(si.erro || si.mensagem)}${(si.detalhe || []).length ? `<br><span class="sm">${si.detalhe.map(esc).join("<br>")}</span>` : ""}</div>` : "";
+  const lista = S.eventos.slice(0, 80).map((e) => `<div class="card slim"><div class="row sp"><div class="grow"><div class="mut sm">${emoji(e.esporte_nome)} ${esc(e.liga || "")} · ${fmtDataHora(e.inicio)}</div>
+    <div style="font-weight:700">${esc(e.casa)} x ${esc(e.fora)}</div></div>
+    <button class="btn xs ${e.destaque ? "p" : "g"}" data-act="toggle-destaque" data-ev="${esc(e.id)}" data-v="${e.destaque ? 1 : 0}">${e.destaque ? "★ Destaque" : "☆ Destacar"}</button></div></div>`).join("");
   return `<div class="card"><h3>Jogos e odds</h3>${bloco}<p class="mut" style="margin:0 0 12px">${S.eventos.length} jogos futuros na base.${S.ultimaSync ? `<br>Última atualização: ${esc(S.ultimaSync)}` : ""}</p>
     <button class="btn p" data-act="sync-jogos">Atualizar jogos agora</button>
-    <p class="mut sm" style="margin:12px 0 0">${MODO_DEMO ? "No modo demonstração os jogos são fictícios." : "Cada atualização gasta créditos da API de odds (plano grátis: 500 por mês). Há também uma atualização automática a cada 6 horas."}</p></div>`;
+    <p class="mut sm" style="margin:12px 0 0">${MODO_DEMO ? "No modo demonstração os jogos são fictícios." : "Cada atualização gasta créditos da API de odds (plano grátis: 500 por mês) e prioriza as competições mais desatualizadas. Há também uma atualização automática a cada 6 horas."}</p></div>
+    <div class="sec-t">Escolha os jogos em destaque (aparecem no topo para todos)</div>${lista || `<div class="vazio">Nenhum jogo na base. Atualize acima.</div>`}`;
+}
+function stAvisos() {
+  const lista = S.banners.map((b) => `<div class="bn ${esc(b.cor)}" style="max-width:none;margin-bottom:10px"><b>${esc(b.titulo)} ${b.ativo ? "" : '<span class="badge st-recusado">oculto</span>'}</b><span>${esc(b.texto || "")}</span>
+    <div class="btns" style="margin-top:8px"><button class="btn g xs" data-act="toggle-banner" data-id="${esc(b.id)}" data-ativo="${b.ativo ? 1 : 0}">${b.ativo ? "Ocultar" : "Mostrar"}</button><button class="btn d xs" data-act="excluir-banner" data-id="${esc(b.id)}">Excluir</button></div></div>`).join("");
+  return `<div class="card"><h3>Novo aviso / chamada</h3><p class="mut sm" style="margin:-4px 0 10px">Aparece como faixa colorida no topo da lista de jogos.</p><form data-form="aviso">
+    <label for="av-t">Título</label><input id="av-t" type="text" maxlength="60" placeholder="Ex: 🔥 Rodada do Brasileirão" required>
+    <label for="av-x">Texto</label><input id="av-x" type="text" maxlength="160" placeholder="Ex: Validações até 15 min antes do jogo">
+    <label for="av-c">Cor</label><select id="av-c"><option value="verde">Verde</option><option value="amarelo">Amarelo</option><option value="azul">Azul</option><option value="roxo">Roxo</option></select>
+    <button class="btn p" style="margin-top:14px" type="submit">Publicar aviso</button></form></div>
+    ${lista || `<div class="vazio">Nenhum aviso ainda.</div>`}`;
 }
 
 /* ----------------------------- ações ----------------------------- */
 async function buscarBilhete() {
-  S.buscou = true;
-  try { S.bilheteAberto = await S.be.obterBilhete(S.codigoBusca.trim().toUpperCase()); }
-  catch (e) { S.bilheteAberto = null; toast(msgErro(e), "erro"); }
+  S.buscou = true; S.selAp = "";
+  try {
+    S.bilheteAberto = await S.be.obterBilhete(S.codigoBusca.trim().toUpperCase());
+    if (S.bilheteAberto) S.apostadores = await S.be.listarApostadores();
+  } catch (e) { S.bilheteAberto = null; toast(msgErro(e), "erro"); }
 }
 async function carregaAba() {
   try {
     if (S.abaStaff === "apostadores") S.apostadores = await S.be.listarApostadores();
     if (S.abaStaff === "bilhetes") S.bilhetesStaff = await S.be.listarBilhetesSupervisor();
+    if (S.abaStaff === "resultados") S.jogosRes = await S.be.jogosParaResultado();
     if (S.abaStaff === "supervisores") S.supervisores = await S.be.listarSupervisores();
     if (S.abaStaff === "todos") S.bilhetesAdmin = await S.be.adminListarBilhetes();
+    if (S.abaStaff === "avisos") S.banners = await S.be.banners();
     if (S.abaStaff === "jogos") {
       S.eventos = await S.be.eventos();
       const t = S.eventos.map((e) => e.atualizado_em).filter(Boolean).sort().pop();
@@ -788,20 +1060,27 @@ async function acao(btn) {
     switch (a) {
       case "aceitar-18": localStorage.setItem("zs_18", "1"); return iniciar();
       case "recusar-18": app.innerHTML = pageHtml(`<div class="vazio" style="padding-top:80px">Esse conteúdo não é para menores de 18 anos.</div>`); return;
-      case "resetar-demo": S.be.resetar(); toast("Demonstração zerada", "ok"); return iniciar();
+      case "resetar-demo": S.be.resetar(); S.picks = {}; S.codigos = []; localStorage.removeItem("zs_codigos"); localStorage.removeItem("zs_picks"); toast("Demonstração zerada", "ok"); return iniciar();
+      case "tema": {
+        const t = document.documentElement.dataset.tema === "escuro" ? "claro" : "escuro";
+        document.documentElement.dataset.tema = t; localStorage.setItem("zs_tema", t); return render();
+      }
       case "entrar-staff": S.view = "login"; return render();
-      case "voltar-home": S.view = "home"; return render();
-      case "sair": await S.be.logout(); S.perfil = null; S.bilheteAberto = null; S.view = "home"; return render();
-      // amigo
-      case "tab-amigo":
-        S.abaAmigo = d.tab; S.sheet = false;
-        if (d.tab === "meus") S.bilhetesAmigo = await S.be.meusBilhetes(S.token);
+      case "ir-jogos": S.cupomCodigo = null; await carregarJogos(); S.view = "jogos"; S.aba = "jogos"; return render();
+      case "ir-painel": S.view = "staff"; await carregaAba(); return render();
+      case "sair": await S.be.logout(); S.perfil = null; S.bilheteAberto = null; S.buscou = false; await carregarJogos(); S.view = "jogos"; S.aba = "jogos"; return render();
+      // jogos / bilhete
+      case "tab-jogos":
+        S.aba = d.tab; S.sheet = false;
+        if (d.tab === "meus") S.bilhetes = S.codigos.length ? await S.be.bilhetesPorCodigos(S.codigos) : [];
         return render();
       case "chip": S.esporte = d.esp; drawChips(); return drawLista();
+      case "toggle-extras": S.abertos[d.ev] = !S.abertos[d.ev]; return drawLista();
       case "pick": {
+        const p = { mercado: d.m, selecao: d.sel, linha: d.l !== undefined ? Number(d.l) : null };
         const cur = S.picks[d.ev];
-        if (cur === d.sel) delete S.picks[d.ev];
-        else { if (!cur && Object.keys(S.picks).length >= 15) return toast("Máximo de 15 jogos por bilhete", "erro"); S.picks[d.ev] = d.sel; }
+        if (cur && pickIgual(cur, p)) delete S.picks[d.ev];
+        else { if (!cur && Object.keys(S.picks).length >= 15) return toast("Máximo de 15 jogos por bilhete", "erro"); S.picks[d.ev] = p; }
         salvarPicks(); drawLista(); return drawBarra();
       }
       case "abrir-sheet": S.sheet = true; return drawSheet();
@@ -809,27 +1088,54 @@ async function acao(btn) {
       case "rm-pick": delete S.picks[d.ev]; salvarPicks(); if (!Object.keys(S.picks).length) S.sheet = false; drawSheet(); drawLista(); return drawBarra();
       case "limpar-picks": S.picks = {}; salvarPicks(); S.sheet = false; drawSheet(); drawLista(); return drawBarra();
       case "gerar-bilhete": {
+        const ap = ($("#ap-inf").value || "").trim();
+        if (ap.length < 2) return toast("Informe seu apelido (mínimo 2 letras)", "erro");
+        S.apelido = ap; localStorage.setItem("zs_apelido", ap);
         btn.disabled = true;
-        const itens = Object.entries(S.picks).map(([evento_id, selecao]) => ({ evento_id, selecao }));
+        const itens = Object.entries(S.picks).map(([evento_id, p]) => ({ evento_id, mercado: p.mercado, selecao: p.selecao, linha: p.linha }));
         try {
-          const r = await S.be.criarBilhete(S.token, itens);
-          const lista = await S.be.meusBilhetes(S.token);
-          S.bilhetesAmigo = lista; S.ultimo = lista.find((b) => b.codigo === r.codigo);
+          const r = await S.be.criarBilhete(itens, ap);
+          S.codigos = [r.codigo, ...S.codigos.filter((c) => c !== r.codigo)].slice(0, 30);
+          localStorage.setItem("zs_codigos", JSON.stringify(S.codigos));
+          S.ultimo = (await S.be.bilhetesPorCodigos([r.codigo]))[0];
           S.picks = {}; salvarPicks(); S.sheet = false; S.view = "bilheteGerado"; return render();
-        } catch (e) { btn.disabled = false; toast(msgErro(e), "erro"); if (/EVENTO/.test(e.message)) { S.eventos = await S.be.eventos(); drawLista(); drawSheet(); } return; }
+        } catch (e) { btn.disabled = false; toast(msgErro(e), "erro"); if (/EVENTO|ODD/.test(e.message)) { await carregarJogos(); drawLista(); drawSheet(); } return; }
       }
-      case "voltar-jogos": S.view = "amigo"; S.abaAmigo = "jogos"; S.eventos = await S.be.eventos(); return render();
-      case "wa-bilhete": {
-        const b = S.bilhetesAmigo.find((x) => x.codigo === d.cod) || S.ultimo;
-        window.open(waLink(S.amigo.supervisor_telefone, textoBilhete(b)), "_blank"); return;
-      }
-      case "copiar-bilhete": { const b = S.bilhetesAmigo.find((x) => x.codigo === d.cod) || S.ultimo; await copiar(textoBilhete(b)); return toast("Texto copiado", "ok"); }
+      case "voltar-jogos": await carregarJogos(); S.view = "jogos"; S.aba = "jogos"; return render();
+      case "wa-bilhete": { const b = S.bilhetes.find((x) => x.codigo === d.cod) || S.ultimo; window.open(waLink("", textoBilhete(b)), "_blank"); return; }
+      case "copiar-bilhete": { const b = S.bilhetes.find((x) => x.codigo === d.cod) || S.ultimo; await copiar(textoBilhete(b)); return toast("Texto copiado", "ok"); }
       // staff
       case "tab-staff": S.abaStaff = d.tab; await carregaAba(); return render();
+      case "atualizar-cupom": { const r = await S.be.bilhetesPorCodigos([S.cupomCodigo]); S.cupom = r[0] || null; toast("Status atualizado", "ok"); return render(); }
+      case "wa-cupom": { const b = [S.cupom, S.ultimo, S.bilheteAberto, ...S.bilhetes].find((x) => x && x.codigo === d.cod); window.open(waLink("", textoCupom(b)), "_blank"); return; }
+      case "wa-cupom-jogador": { const b = S.bilheteAberto; window.open(waLink(d.tel, textoCupom(b)), "_blank"); return; }
+      case "copiar-link-cupom": await copiar(linkCupom(d.cod)); return toast("Link do cupom copiado", "ok");
+      case "atualizar-meus": S.bilhetes = S.codigos.length ? await S.be.bilhetesPorCodigos(S.codigos) : []; toast("Status atualizado", "ok"); return render();
+      case "salvar-placar": {
+        const card = btn.closest("[data-card]");
+        const c = parseInt(card.querySelector(".pc-casa").value, 10), f = parseInt(card.querySelector(".pc-fora").value, 10);
+        if (isNaN(c) || isNaN(f) || c < 0 || f < 0) return toast("Informe o placar (números a partir de 0)", "erro");
+        await S.be.registrarPlacar(d.ev, c, f, false); toast("Placar salvo: bilhetes atualizados", "ok"); await carregaAba(); return render();
+      }
+      case "vencedor": await S.be.registrarPlacar(d.ev, d.w === "casa" ? 1 : 0, d.w === "fora" ? 1 : 0, false); toast("Resultado salvo: bilhetes atualizados", "ok"); await carregaAba(); return render();
+      case "anular-jogo": if (!confirm("Anular este jogo? Os palpites nele ficam como anulados.")) return; await S.be.registrarPlacar(d.ev, null, null, true); toast("Jogo anulado", "ok"); await carregaAba(); return render();
+      case "desfazer-placar": if (!confirm("Desfazer o placar? Os bilhetes voltam para “em andamento”.")) return; await S.be.apagarPlacar(d.ev); toast("Placar desfeito", "ok"); await carregaAba(); return render();
       case "abrir-bilhete": S.codigoBusca = d.cod; S.abaStaff = "validar"; await buscarBilhete(); return render();
       case "validar": {
-        if (!confirm(`Validar o bilhete ${d.cod}? Ele ficará vinculado ao seu login.`)) return;
-        await S.be.validarBilhete(d.cod); toast("Bilhete validado", "ok");
+        const sel = ($("#sel-ap") || {}).value || "";
+        if (!sel) return toast("Escolha para qual apostador você está validando", "erro");
+        let apId = sel, quem;
+        if (sel === "__novo__") {
+          const nome = ($("#na-nome").value || "").trim(), ap = ($("#na-apelido").value || "").trim();
+          if (nome.length < 2 || ap.length < 2) return toast("Preencha nome e apelido do novo apostador", "erro");
+          quem = ap;
+          if (!confirm(`Validar o bilhete ${d.cod} para ${quem}? Ele ficará vinculado ao seu login.`)) return;
+          apId = (await S.be.criarApostador(nome, ap, ($("#na-tel").value || "").trim())).id;
+        } else {
+          quem = (S.apostadores.find((x) => x.id === sel) || {}).apelido;
+          if (!confirm(`Validar o bilhete ${d.cod} para ${quem}? Ele ficará vinculado ao seu login.`)) return;
+        }
+        await S.be.validarBilhete(d.cod, apId); toast("Bilhete validado", "ok");
         S.bilheteAberto = await S.be.obterBilhete(d.cod); return render();
       }
       case "recusar": {
@@ -842,11 +1148,12 @@ async function acao(btn) {
         const t = `✅ *ZSGREEN* — Bilhete *${b.codigo}* validado por ${b.validado_por_nome} em ${fmtDataHora(b.validado_em)}.\nOdd total: *${fmtOdd(b.odd_total)}*`;
         window.open(waLink("", t), "_blank"); return;
       }
-      case "copiar-link": await copiar(linkAmigo(d.token)); return toast("Link copiado", "ok");
-      case "wa-link": window.open(waLink("", `Oi ${d.ap}! Seu link pessoal do ZSGREEN: ${linkAmigo(d.token)}\nGuarde esse link: é o seu acesso.`), "_blank"); return;
       case "toggle-apostador": await S.be.setApostadorAtivo(d.id, d.ativo !== "1"); await carregaAba(); return render();
       case "filtro-bil": S.filtroBil = d.f; return render();
       case "toggle-supervisor": await S.be.setSupervisorAtivo(d.id, d.ativo !== "1"); await carregaAba(); return render();
+      case "toggle-destaque": { const v = d.v !== "1"; await S.be.setDestaque(d.ev, v); const e = S.eventos.find((x) => x.id === d.ev); if (e) e.destaque = v; return render(); }
+      case "toggle-banner": await S.be.setBannerAtivo(d.id, d.ativo !== "1"); await carregaAba(); return render();
+      case "excluir-banner": if (!confirm("Excluir este aviso?")) return; await S.be.excluirBanner(d.id); await carregaAba(); return render();
       case "sync-jogos": {
         btn.disabled = true; btn.textContent = "Atualizando…";
         try { const r = await S.be.sincronizarJogos(); S.syncInfo = r; toast(r.mensagem, "ok"); }
@@ -866,14 +1173,12 @@ async function enviar(form) {
       return render();
     }
     if (f === "buscar") { S.codigoBusca = $("#cod").value; await buscarBilhete(); return render(); }
-    if (f === "apostador") {
-      const ap = await S.be.criarApostador($("#ap-nome").value.trim(), $("#ap-apelido").value.trim());
-      toast("Apostador cadastrado. Envie o link a ele!", "ok"); await carregaAba(); return render();
-    }
+    if (f === "apostador") { await S.be.criarApostador($("#ap-nome").value.trim(), $("#ap-apelido").value.trim(), ($("#ap-tel").value || "").trim()); toast("Apostador cadastrado", "ok"); await carregaAba(); return render(); }
     if (f === "supervisor") {
       await S.be.criarSupervisor({ nome: $("#sp-nome").value.trim(), email: $("#sp-email").value.trim(), senha: $("#sp-senha").value, telefone: $("#sp-tel").value });
       toast("Supervisor criado", "ok"); await carregaAba(); return render();
     }
+    if (f === "aviso") { await S.be.salvarBanner({ titulo: $("#av-t").value, texto: $("#av-x").value, cor: $("#av-c").value }); toast("Aviso publicado", "ok"); await carregaAba(); return render(); }
   } catch (e) { toast(msgErro(e), "erro"); }
 }
 
@@ -885,6 +1190,9 @@ document.addEventListener("click", (ev) => {
 });
 document.addEventListener("submit", (ev) => { const f = ev.target.closest("form[data-form]"); if (f) { ev.preventDefault(); enviar(f); } });
 document.addEventListener("input", (ev) => { if (ev.target.id === "busca") { S.busca = ev.target.value; drawLista(); } });
+document.addEventListener("change", (ev) => {
+  if (ev.target.id === "sel-ap") { S.selAp = ev.target.value; const n = $("#novo-ap"); if (n) n.style.display = ev.target.value === "__novo__" ? "block" : "none"; }
+});
 
 boot();
 </script>
